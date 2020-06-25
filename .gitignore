@@ -4,6 +4,21 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+
+# Ignore local files required for testing
+/.symmetric-encryption
+/config/symmetric-encryption*
+/config/credentials*
+
+.DS_Store
+
+.bash_history
+.viminfo
+.vscode
+
+# Ignore Pry
+/.local 
+
 # Ignore bundler config.
 /.bundle
 
