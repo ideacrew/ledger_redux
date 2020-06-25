@@ -1,0 +1,54 @@
+version: "3.4"
+services:
+  app:
+    build:
+      context: .
+      target: ledger_redux_base
+      dockerfile: ./.docker/development/Dockerfile
+    image: ledger_redux:dev-0.1.0
+    links:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/ledger_redux:cached
+      # - rails_cache:/ledger_redux/tmp/cache
+      - bundle:/bundle
+      - node_modules:/ledger_redux/node_modules
+      # - packs:/ledger_redux/public/packs
+    environment:
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - DB_DATABASE=ledger_redux_development
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres_local
+      - DB_HOST=db
+      - DB_PORT=5432
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AKIA123456789}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AbcD987654321}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - AWS_S3_ROOT_NAMESPACE=${AWS_S3_ROOT_NAMESPACE:-root_bucket}
+      - AWS_BUCKET_ROOT_NAMESPACE=${AWS_BUCKET_ROOT_NAMESPACE:-root_bucket}
+      - AWS_CONNECT_INSTANCE_ID=${AWS_CONNECT_INSTANCE_ID:-123456789}
+      - ACTION_MAILER_HOST=${ACTION_MAILER_HOST:-localhost}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_HOST=${SMTP_HOST:-localhost}
+      - SMTP_DOMAIN=${SMTP_DOMAIN:-ideacrew.com}
+      - SMTP_USERNAME=${SMTP_USERNAME:-username}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-password}
+    command: bash -c "rm -f tmp/pids/server.pid && mkdir -p tmp/pids && yarn install --check-files && bundle exec rails assets:precompile && bundle exec puma -C config/puma.rb"
+  db:
+    image: postgis/postgis:12-3.0
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=ledger_redux_development
+      - POSTGRES_PASSWORD=postgres_local
+volumes:
+  pgdata:
+  rails_cache:
+  bundle:
+  node_modules:
+  packs:

@@ -1,0 +1,19 @@
+FROM ruby:2.6.5 AS ledger_redux_base
+
+ENV HOME /gdal
+
+RUN mkdir -p $HOME/source
+
+WORKDIR $HOME/source
+
+RUN wget https://github.com/OSGeo/gdal/archive/v2.4.4.zip && \
+    unzip v2.4.4.zip && \
+    rm -f v2.4.4.zip && \
+    cd gdal-2.4.4/gdal && \
+    ./configure --prefix=/gdal && \
+    make && \
+    make install && \
+    export PATH=/gdal/bin:$PATH && \
+    export LD_LIBRARY_PATH=/gdal/lib:$LD_LIBRARY_PATH && \
+    export GDAL_DATA=/gdal/share/gdal && \
+    rm -rf /gdal/source
