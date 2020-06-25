@@ -1,4 +1,4 @@
-# FROM ideacrew/covid_most_gdal:0.1.0 AS ledger_redux_base
+FROM ruby:2.6.5 AS ledger_redux_base
 
 LABEL author="IdeaCrew"
 
