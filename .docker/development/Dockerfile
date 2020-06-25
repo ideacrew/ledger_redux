@@ -18,15 +18,13 @@ ENV LANG=C.UTF-8 \
 ENV BUNDLE_PATH $GEM_HOME
 ENV BUNDLE_APP_CONFIG=$BUNDLE_PATH \
     BUNDLE_BIN=$BUNDLE_PATH/bin
-ENV PATH /ledger_redux/bin:$BUNDLE_BIN:/gdal/bin:$PATH
-ENV LD_LIBRARY_PATH=/gdal/lib:$LD_LIBRARY_PATH \
-    GDAL_DATA=/gdal/share/gdal
+ENV PATH /ledger_redux/bin:$BUNDLE_BIN
 
 RUN apt-get update && \
     apt-get -yq dist-upgrade && \
     apt-get install -y imagemagick tzdata build-essential nodejs vim && \
     apt-get autoremove -y && \ 
-    gem install bundler:2.1.2 && \
+    gem install bundler && \
     npm install --global yarn 
 
 COPY . $HOME
