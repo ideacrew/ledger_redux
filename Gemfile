@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+
 ### Extensions
 
 # IdeaCrew Gems
@@ -36,7 +37,6 @@ gem 'poly_press',           git:  'https://github.com/ideacrew/poly_press.git', 
 gem 'call_center',          git:  'https://github.com/ideacrew/call_center.git', branch: 'master'
 
 # Third-party gems
-
 gem "typhoeus",             '~> 1.4'
 gem 'symmetric-encryption', '~> 4.3'
 
@@ -45,17 +45,15 @@ gem 'dry-struct',           '~> 1.0'
 gem 'dry-monads',           '~> 1.3'
 gem 'dry-matcher',          '~> 0.8'
 gem 'mime-types'
+gem 'rails-i18n',           '~> 6.0'
 
 
 # FFCRM dependencies
-
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-encryptable'
 gem 'cancancan'
 
-
-gem 'rails-i18n'
 gem 'rails-observers'
 
 gem 'active_model_serializers'
@@ -82,7 +80,6 @@ gem 'paper_trail'
 gem 'acts_as_commentable'
 gem 'acts-as-taggable-on'
 gem 'acts_as_list'
-gem 'ffaker', '>= 2'
 gem 'premailer'
 
 gem 'responds_to_parent'
@@ -108,6 +105,8 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop'
+  
+  gem 'ffaker', '>= 2'
 
   gem 'json_spec'
   gem 'database_cleaner-active_record'
@@ -121,7 +120,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'yard'
+  gem 'yard', '~> 0.9'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
