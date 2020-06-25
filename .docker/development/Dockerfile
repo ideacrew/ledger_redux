@@ -18,7 +18,7 @@ ENV LANG=C.UTF-8 \
 ENV BUNDLE_PATH $GEM_HOME
 ENV BUNDLE_APP_CONFIG=$BUNDLE_PATH \
     BUNDLE_BIN=$BUNDLE_PATH/bin
-ENV PATH /ledger_redux/bin:$BUNDLE_BIN
+ENV PATH /ledger_redux/bin:$BUNDLE_BIN:$PATH
 
 RUN apt-get update && \
     apt-get -yq dist-upgrade && \
