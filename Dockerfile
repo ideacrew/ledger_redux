@@ -32,7 +32,7 @@ RUN apt-get update && \
     apt-get install -y imagemagick tzdata build-essential nodejs vim && \
     apt-get autoremove -y && \ 
     cp config/database.postgres.docker.yml config/database.yml && \
-    gem install bundler:2.1.4 && \
+    gem install bundler && \
     npm install --global yarn && \
     yarn install --check-files && \
     bundle config set deployment 'true' && \

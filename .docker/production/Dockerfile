@@ -30,7 +30,7 @@ RUN apt-get update && \
     apt-get -yq dist-upgrade && \
     apt-get install -y imagemagick tzdata build-essential nodejs vim && \
     apt-get autoremove -y && \ 
-    gem install bundler:2.1.2 && \
+    gem install bundler && \
     npm install --global yarn 
 
 COPY package.json package.json
