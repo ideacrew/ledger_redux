@@ -14,3 +14,12 @@ require("@rails/activestorage").start()
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+
+// import 'bootstrap'
+import './bootstrap_custom'
+import '../stylesheets/application'
+
+document.addEventListener("turbolinks:load", () => {
+  $('[data-toggle="tooltip"]').tooltip()
+})

@@ -1,0 +1,93 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+:root {
+  --header-height: 2.5rem;
+  --text-color: hsl(0, 4%, 18%);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  height: var(--header-height);
+  background-color: #007b56;
+  /*color: #FFB300;*/
+
+  h1 {
+    font-size: 10rem;
+    color: #FF0000;
+  }
+
+  a {
+    color: #ffb300;
+  }
+}
+
+.sidebar-wrapper {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  min-height: 100vh;
+  transition: transform 0.25s ease-out;
+  padding: 0;
+  list-style: none;
+  transform: translateX(-100%);
+  z-index: 100;
+
+  a {
+    color: #ffb300;
+  }
+}
+
+.sidebar-wrapper.toggled {
+  transform: translateX(0);
+}
+
+#sidebar-wrapper {
+  background-color: #007b56;
+}
+.list-group-item {
+  color: #ffb300;
+  background-color: #007b56;
+}
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+#sidebar-wrapper {
+  margin-left: 0;
+}
+#page-content-wrapper {
+  min-width: 0;
+  width: 100%;
+}
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -15rem;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Overriding bootstrap btn primary */
+
+.btn-primary {
+  background-color: #76ba0c;
+  border-color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #ffb300;
+  border-color: #ffffff;
+}
+
