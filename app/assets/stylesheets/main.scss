@@ -9,6 +9,10 @@
   @return map-get($theme-colors, $key);
 }
 
+@function color($key: "blue") {
+  @return map-get($colors, $key);
+}
+
 $theme-colors: (
   "yass_queen": #ff1d58,
   "sister_sister": #f75990,
@@ -21,8 +25,12 @@ $theme-colors: (
   "apple_core": #DCC7AA
 );
 
-$body-bg: theme-color-level(blue_greeny);
-$body-color: theme-color-level(primary, -10);
+$colors: (
+  "primary": #00DDFF
+)
+
+// $body-bg: theme-color-level(blue_greeny);
+// $body-color: theme-color-level(primary, -10);
 
 // $primary: 
 // $success:
