@@ -1,4 +1,5 @@
-class MainController < ApplicationController
+class HomeController < ApplicationController
+
   layout 'main'
   # before_action :authenticate_user!
 

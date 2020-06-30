@@ -2,6 +2,9 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
+import 'jquery'
+import 'popper.js'
+import 'bootstrap'
 
 require("@rails/ujs").start()
 require("turbolinks").start()
@@ -16,9 +19,8 @@ require("@rails/activestorage").start()
 // const imagePath = (name) => images(name, true)
 
 
-// import 'bootstrap'
-import './bootstrap_custom'
-import '../stylesheets/application'
+import './bootstrap_custom.js'
+import '../stylesheets/application.scss'
 
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()

@@ -2,6 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+// Bright Power by Dumomda Perera
+// https://www.behance.net/gallery/80191113/Minimalist-Color-Palettes-are-back
+$theme-colors: (
+  "yass_queen": #ff1d58,
+  "sister_sister": #f75990,
+  "crown_yellow": #fff685,
+  "blue_light": #00DDFF,
+  "brutal_blue": #0049B7
+);
+
+// Apricot Avalanche – Web Design Color Schemes
+$theme-colors: (
+  "blueberry": #6B7A8F,
+  "apricot": #F7882F,
+  "citrus": #F7C331,
+  "apple_core": #DCC7AA
+);
+
+$body-bg: theme-color-level(blue_greeny);
+$body-color: theme-color-level(primary, -10);
+
+// $primary: 
+// $success:
+// $danger:
+// $warning:
+// $info:
+
+
 :root {
   --header-height: 2.5rem;
   --text-color: hsl(0, 4%, 18%);
@@ -13,12 +41,12 @@
   align-items: center;
   padding-left: 1rem;
   height: var(--header-height);
-  background-color: #007b56;
-  /*color: #FFB300;*/
+  background-color: theme-color("blue_greeny");
+  // background-color: #007b56;
 
   h1 {
-    font-size: 10rem;
-    color: #FF0000;
+    font-size: 1rem;
+    // color: #FF0000;
   }
 
   a {
