@@ -1,0 +1,4 @@
+[submodule "fat_free_crm"]
+	path = vendor/plugins/fat_free_crm
+	url = https://github.com/ideacrew/fat_free_crm.git
+	branch = ledger
