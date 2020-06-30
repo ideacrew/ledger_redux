@@ -4,16 +4,17 @@
 
 // Bright Power by Dumomda Perera
 // https://www.behance.net/gallery/80191113/Minimalist-Color-Palettes-are-back
+
+@function theme-color($key: "primary") {
+  @return map-get($theme-colors, $key);
+}
+
 $theme-colors: (
   "yass_queen": #ff1d58,
   "sister_sister": #f75990,
   "crown_yellow": #fff685,
   "blue_light": #00DDFF,
-  "brutal_blue": #0049B7
-);
-
-// Apricot Avalanche – Web Design Color Schemes
-$theme-colors: (
+  "brutal_blue": #0049B7,
   "blueberry": #6B7A8F,
   "apricot": #F7882F,
   "citrus": #F7C331,
@@ -41,8 +42,7 @@ $body-color: theme-color-level(primary, -10);
   align-items: center;
   padding-left: 1rem;
   height: var(--header-height);
-  background-color: theme-color("blue_greeny");
-  // background-color: #007b56;
+  background-color: theme-color("blue_light");
 
   h1 {
     font-size: 1rem;
