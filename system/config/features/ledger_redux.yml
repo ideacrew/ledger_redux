@@ -1,0 +1,19 @@
+---
+registry:
+  - namespace:
+      - :app
+    features:
+      - key: :app_name
+        item: Ledger
+        is_enabled: true
+        meta:
+          label: Ledger Application
+          # type: {ui: [:nav, :header, :horizontal]}
+          content_type: :header
+          default: :ledger
+          description: 'Ledger Application'
+          is_required: true
+          is_visible: false
+      - key: :client_name
+        is_enabled: true
+        item: DC HealthLink

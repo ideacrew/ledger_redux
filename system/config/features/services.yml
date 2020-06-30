@@ -1,0 +1,187 @@
+---
+registry:
+  - namespace:
+      - :system
+    features:
+      - key: :boot
+        item: Services::Start.new
+        is_enabled: false
+        meta:
+          label: Boot
+          content_type: :legend
+          default: :boot
+          description: 'Boot available features'
+          is_required: true
+          is_visible: false
+        settings:
+          - key: :start
+            item: 'operations/services/start'
+          - key: :stop
+            item: 'operations/services/stop'
+          - key: :restart
+            item: 'operations/services/restart'
+      - key: :aws
+        is_enabled: true
+        meta:
+          label: AWS
+          content_type: :legend
+          default: :boot
+          description: 'AWS settings'
+          is_required: true
+          is_visible: true
+        settings:
+          - key: :label
+            item: 'AWS'
+          - key: :aws_access_key_id
+            item: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+            meta:
+              label: Action Mailer Host
+              content_type: :text_field
+              default: ''
+              description: Enter setting for AWS Access Key
+              is_required: false
+              is_visible: true
+          - key: :aws_secret_access_key
+            item: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+            meta:
+              label: AWS Secret Access Key
+              content_type: :text_field
+              default: ''
+              description: Enter setting for AWS Secret Access Key
+              is_required: false
+              is_visible: true
+          - key: :aws_region
+            item: <%= ENV['AWS_REGION'] %>
+            meta:
+              label: AWS Region
+              content_type: :text_field
+              default: ''
+              description: Enter setting for AWS Region
+              is_required: false
+              is_visible: true
+  - namespace:
+      - :system
+      - :services
+    features:
+      - key: :smtp_service
+        is_enabled: true
+        meta:
+          label: Enable Service
+          content_type: :radio_select
+          default: :enabled
+          enum: [ { 'true': "Enabled" }, { 'false': "Disabled" } ]
+          description: 'Enable SMTP feature'
+          is_required: false
+          is_visible: true
+        settings:
+          - key: :label
+            item: 'SMTP Service'
+          - key: :action_mailer_host
+            item: <%= ENV['ACTION_MAILER_HOST'] %>
+            meta:
+              label: Action Mailer Host
+              content_type: :text_field
+              default: ''
+              description: Enter setting for Action Mailer Host
+              is_required: false
+              is_visible: true
+          - key: :smtp_port
+            item: <%= ENV['SMTP_PORT'] %>
+            meta:
+              label: SMTP port
+              content_type: :text_field
+              default: ''
+              description: Enter setting for SMTP port
+              is_required: false
+              is_visible: true
+          - key: :smtp_host
+            item: <%= ENV['SMTP_HOST'] %>
+            meta:
+              label: SMTP host
+              content_type: :text_field
+              default: ''
+              description: Enter setting for SMTP host
+              is_required: false
+              is_visible: true
+          - key: :smtp_domain
+            item: <%= ENV['SMTP_DOMAIN'] %>
+            meta:
+              label: SMTP domain
+              content_type: :text_field
+              default: ''
+              description: Enter setting for SMTP Domain
+              is_required: false
+              is_visible: true
+          - key: :smtp_username
+            item: <%= ENV['SMTP_USERNAME'] %>
+            meta:
+              label: SMTP Username
+              content_type: :text_field
+              default: ''
+              description: Enter setting for SMTP Username
+              is_required: false
+              is_visible: true
+          - key: :smtp_password
+            item: <%= ENV['SMTP_PASSWORD'] %>
+            meta:
+              label: SMTP Password
+              content_type: :text_field
+              default: ''
+              description: Enter setting for Password
+              is_required: false
+              is_visible: true
+      - key: :call_center
+        is_enabled: true
+        meta:
+          label: Enable Service
+          content_type: :radio_select
+          default: :enabled
+          enum: [ { 'true': "Enabled" }, { 'false': "Disabled" } ]
+          description: 'Enable Call Center feature'
+          is_required: false
+          is_visible: true
+        settings:
+          - key: :aws_connect_instance_id
+            item: <%= ENV['AWS_CONNECT_INSTANCE_ID'] %>
+            meta:
+              label: AWS Connect Instance ID
+              content_type: :text_field
+              default: ''
+              description: Enter setting for AWS Connect Instance ID
+              is_required: false
+              is_visible: true
+      - key: :doc_store
+        is_enabled: true
+        meta:
+          label: Enable Service
+          content_type: :radio_select
+          default: :enabled
+          enum: [ { 'true': "Enabled" }, { 'false': "Disabled" } ]
+          description: 'Enable Document Storage feature'
+          is_required: false
+          is_visible: true
+        settings:
+          - key: :label
+            item: 'Document Store'
+          - key: :aws_bucket_root_namespace
+            item: <%= ENV['AWS_BUCKET_ROOT_NAMESPACE'] %>
+            meta:
+              label: AWS Root Bucket Namespace
+              content_type: :text_field
+              default: ''
+              description: Enter setting for AWS Root Bucket Namespace
+              is_required: false
+              is_visible: true
+      - key: :sns_service
+        is_enabled: true
+        meta:
+          label: Enable Service
+          content_type: :radio_select
+          default: :enabled
+          enum: [ { 'true': "Enabled" }, { 'false': "Disabled" } ]
+          description: 'Enable SNS feature'
+          is_required: false
+          is_visible: true
+        settings:
+          - key: :label
+            item: 'SNS Service'
