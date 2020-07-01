@@ -53,6 +53,7 @@ services:
       - AWS_S3_ROOT_NAMESPACE=${AWS_S3_ROOT_NAMESPACE:-root_bucket}
       - AWS_BUCKET_ROOT_NAMESPACE=${AWS_BUCKET_ROOT_NAMESPACE:-root_bucket}
       - AWS_CONNECT_INSTANCE_ID=${AWS_CONNECT_INSTANCE_ID:-123456789}
+      - AWS_CONNECT_INSTANCE_URL=${AWS_CONNECT_INSTANCE_URL:-http://localhost}
     secrets:
       - master_key
       - credentials
