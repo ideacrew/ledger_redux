@@ -64,6 +64,7 @@ ARG AWS_SECRET_ACCESS_KEY
 ARG AWS_REGION
 ARG AWS_BUCKET_ROOT_NAMESPACE
 ARG AWS_CONNECT_INSTANCE_ID
+ARG AWS_CONNECT_INSTANCE_URL
 
 RUN export DB_DATABASE=$DB_DATABASE && \
     export DB_USERNAME=$DB_USERNAME && \
@@ -80,6 +81,7 @@ RUN export DB_DATABASE=$DB_DATABASE && \
     export AWS_REGION=$AWS_REGION && \
     export AWS_BUCKET_ROOT_NAMESPACE=$AWS_BUCKET_ROOT_NAMESPACE && \
     export AWS_CONNECT_INSTANCE_ID=$AWS_CONNECT_INSTANCE_ID && \
+    export AWS_CONNECT_INSTANCE_URL=$AWS_CONNECT_INSTANCE_URL && \
     bundle exec rake assets:precompile && \
     unset DB_DATABASE && \
     unset DB_USERNAME && \
@@ -95,7 +97,8 @@ RUN export DB_DATABASE=$DB_DATABASE && \
     unset AWS_SECRET_ACCESS_KEY && \
     unset AWS_REGION && \
     unset AWS_BUCKET_ROOT_NAMESPACE && \
-    unset AWS_CONNECT_INSTANCE_ID
+    unset AWS_CONNECT_INSTANCE_ID && \
+    unset AWS_CONNECT_INSTANCE_URL
 
 RUN rm -f /ledger_redux/config/master.key && rm -f /ledger_redux/config/credentials.yml.enc
 
