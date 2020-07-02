@@ -13,7 +13,11 @@
 ActiveRecord::Schema.define(version: 2020_07_01_155396) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
+  enable_extension "postgis"
+  enable_extension "postgis_tiger_geocoder"
+  enable_extension "postgis_topology"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -523,6 +527,13 @@ ActiveRecord::Schema.define(version: 2020_07_01_155396) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name"], name: "index_settings_on_name"
+  end
+
+  create_table "spatial_ref_sys", primary_key: "srid", id: :integer, default: nil, force: :cascade do |t|
+    t.string "auth_name", limit: 256
+    t.integer "auth_srid"
+    t.string "srtext", limit: 2048
+    t.string "proj4text", limit: 2048
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
