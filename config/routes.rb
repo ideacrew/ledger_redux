@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :home, only: [:index]
 
-  mount FatFreeCrm::Engine, at: "/crm"
+  # mount FatFreeCrm::Engine, at: "/crm"
 
   resources :accounts, only: [:index]
   resources :call_centers, only: [:index]

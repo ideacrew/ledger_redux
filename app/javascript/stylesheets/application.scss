@@ -1,4 +1,5 @@
 @import "stylesheets/custom_theme.scss";
-@import "./bootstrap_custom.scss";
+@import "stylesheets/bootstrap_core";
 @import "stylesheets/main.scss";
-
+@import "stylesheets/bootstrap_custom.scss";
+// @import "~bootstrap/scss/bootstrap";
