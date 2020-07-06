@@ -5,6 +5,8 @@ services:
       context: .
       target: ledger_redux_base
       dockerfile: ./.docker/development/Dockerfile
+      args:
+        BUNDLER_VERSION: '2.1.4'
     image: ledger_redux:dev-0.1.0
     links:
       - db
@@ -47,9 +49,28 @@ services:
     environment:
       - POSTGRES_DB=ledger_redux_development
       - POSTGRES_PASSWORD=postgres_local
+  amqp:
+    image: rabbitmq:3.8-management
+    container_name: rabbitmq
+    volumes:
+      - rabbitmq_etc:/etc/rabbitmq/
+      - rabbitmq_data:/var/lib/rabbitmq/
+      - rabbitmq_logs:/var/log/rabbitmq/
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=${RABBITMQ_ERLANG_COOKIE:-123456789}
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-guest}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-guest}
+    ports:
+      - 4369:4369
+      - 5672:5672
+      - 25672:25672
+      - 15672:15672
 volumes:
   pgdata:
   rails_cache:
   bundle:
   node_modules:
   packs:
+  rabbitmq_etc:
+  rabbitmq_data:
+  rabbitmq_logs:
