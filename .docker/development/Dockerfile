@@ -20,11 +20,13 @@ ENV BUNDLE_APP_CONFIG=$BUNDLE_PATH \
     BUNDLE_BIN=$BUNDLE_PATH/bin
 ENV PATH /ledger_redux/bin:$BUNDLE_BIN:$PATH
 
+ARG BUNDLER_VERSION
+
 RUN apt-get update && \
     apt-get -yq dist-upgrade && \
     apt-get install -y imagemagick tzdata build-essential nodejs vim && \
     apt-get autoremove -y && \ 
-    gem install bundler && \
+    gem install bundler:$BUNDLER_VERSION && \
     npm install --global yarn 
 
 COPY . $HOME
@@ -33,7 +35,8 @@ COPY . $HOME
 ENV RAILS_ENV='development'
 ENV NODE_ENV='development'
 
-RUN yarn install --check-files && \
+RUN git submodule update --init && \
+    yarn install --check-files && \
     bundle config set deployment 'true' && \
     bundle install 
 
