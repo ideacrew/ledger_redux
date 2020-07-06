@@ -28,13 +28,15 @@ gem 'jbuilder', '~> 2.7'
 
 # IdeaCrew Gems
 # gem 'fat_free_crm',       git:  'https://github.com/ideacrew/fat_free_crm.git', branch: 'release_0.3.1'
-# gem 'fat_free_crm',       path:  './vendor/plugins/fat_free_crm'
+gem 'fat_free_crm',       path:  './vendor/plugins/fat_free_crm'
 
 gem 'resource_registry',    git:  'https://github.com/ideacrew/resource_registry.git', branch: 'branch_0.8.0'
 # gem 'resource_registry',  path:  './vendor/plugins/resource_registry'
 
 gem 'poly_press',           git:  'https://github.com/ideacrew/poly_press.git', branch: 'master'
 gem 'call_center',          git:  'https://github.com/ideacrew/call_center.git', branch: 'master'
+
+gem 'simple_form',          '~> 5.0'
 
 # Third-party gems
 gem 'aws-sdk-s3'
