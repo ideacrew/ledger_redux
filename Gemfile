@@ -48,54 +48,13 @@ gem 'dry-matcher',          '~> 0.8'
 gem 'mime-types'
 gem 'rails-i18n',           '~> 6.0'
 
-
-# FFCRM dependencies
-gem 'devise'
-gem 'devise-i18n'
-gem 'devise-encryptable'
-gem 'cancancan'
-
-gem 'rails-observers'
-
-gem 'active_model_serializers'
-gem 'activemodel-serializers-xml'
-gem 'responders'
-
-gem 'jquery-rails'
-gem 'jquery-migrate-rails'
-gem 'jquery-ui-rails'
-gem 'rails3-jquery-autocomplete'
-gem 'font-awesome-rails'
-gem 'sass'
-gem 'coffee-rails'
-gem 'rmagick'
-
-gem 'country_select'
-gem 'select2-rails'
-gem 'simple_form'
-gem 'haml'
-gem 'will_paginate'
-gem 'dynamic_form'
-
-gem 'paperclip'
-gem 'paper_trail'
-gem 'acts_as_commentable'
-gem 'acts-as-taggable-on'
-gem 'acts_as_list'
-gem 'premailer'
-
-gem 'responds_to_parent'
-gem 'rails_autolink'
-gem 'coffee-script-source'
-
-gem 'ransack', '>= 1.6.2'
-gem 'ransack_ui', '~> 1.3', '>= 1.3.1'
-gem 'ransack_chronic'
-
-###
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
+# gems used by asset pipeline/bootsnap
+gem 'sass'
+gem 'premailer'
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
