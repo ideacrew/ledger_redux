@@ -38,8 +38,6 @@ ENV NODE_ENV='development'
 RUN git submodule update --init && \
     yarn install --check-files && \
     bundle config set deployment 'true' && \
-    bundle install && \
-    bundle exec rake db:migrate && \
-    bundle exec rake db:seed 
-
+    bundle install
+    
 
