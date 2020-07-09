@@ -1,7 +1,8 @@
 import 'amazon-connect-streams';
 
-const instanceURL = 'https://demo-covid.awsapps.com/connect/ccp-v2';
-
+const instanceURL = document.querySelector(
+  'meta[name=aws_connect_instance_url]'
+).content;
 const containerDiv = document.querySelector('#containerDiv');
 var phNumber = document.querySelector("meta[name='phone_number']").content;
 
