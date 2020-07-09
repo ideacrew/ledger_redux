@@ -30,8 +30,8 @@
 // $teal:    #20c997;
 // $cyan:    #17a2b8;
 // $white:   #fff;
-// $primary:     #ebf6f5;
-// $secondary:   #fbe3e8;
+$primary: theme-color("blue-greeny");
+$secondary: theme-color("pinky");
 // $success:
 // $info:
 // $warning:
@@ -55,7 +55,7 @@
     align-items: center;
     padding-left: 1rem;
     height: var(--header-height);
-    background-color: theme-color("blue_greeny");
+    background-color: $primary;
     h1 {
         font-size: 1rem;
     }
@@ -85,12 +85,12 @@
 }
 
 #sidebar-wrapper {
-    background-color: theme-color("blue_greeny");
+    background-color: $primary;
 }
 
 .list-group-item {
     color: #D6B496;
-    background-color: theme-color("blue_greeny");
+    background-color: $primary;
 }
 
 #sidebar-wrapper .sidebar-heading {
