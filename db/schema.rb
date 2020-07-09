@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_07_01_155396) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "fuzzystrmatch"
-  enable_extension "plpgsql"
-  enable_extension "postgis"
-  enable_extension "postgis_tiger_geocoder"
-  enable_extension "postgis_topology"
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -108,7 +101,6 @@ ActiveRecord::Schema.define(version: 2020_07_01_155396) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
-    t.point "lonlat"
     t.index ["addressable_id", "addressable_type"], name: "addresses_id_and_type"
   end
 
