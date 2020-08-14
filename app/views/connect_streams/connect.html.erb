@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+	<head>
+   <meta name='aws_connect_instance_url' content="<%= LedgerReduxRegistry[:aws_connect_instance_url].item %>">
+  </head>
+	<body>
+		<div id="containerDiv" style="width: 300px;height: 450px;"></div>
+		<meta name="phone_number" content="<%= @phone_number %>">
+    <%= javascript_pack_tag "amazon-connect" %>
+	</body>
+</html>
