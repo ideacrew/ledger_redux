@@ -27,6 +27,12 @@ gem 'jbuilder', '~> 2.7'
 ### Extensions
 
 # IdeaCrew Gems
+
+# QuickBooks Online engine
+# Engine created with following command line options: 
+# $ rails plugin new components/qbo --skip_active_storage --skip_action_text --skip-action-mailer --skip-action-mailbox --mountable
+gem 'qbo', path: 'components/qbo'
+
 # gem 'fat_free_crm',       git:  'https://github.com/ideacrew/fat_free_crm.git', branch: 'release_0.3.1'
 gem 'fat_free_crm',       path:  './vendor/plugins/fat_free_crm'
 
@@ -49,6 +55,8 @@ gem 'dry-monads',           '~> 1.3'
 gem 'dry-matcher',          '~> 0.8'
 gem 'mime-types'
 gem 'rails-i18n',           '~> 6.0'
+
+# gem 'rack-attack',          '~> 6.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
