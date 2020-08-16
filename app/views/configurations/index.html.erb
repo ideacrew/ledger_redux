@@ -1,29 +1,36 @@
-<div id="configurations">
-  <div class="row mt-4">
-    <div class="col-3">
-      <%= list_group_menu(LedgerReduxRegistry.nested_namespaces) %>
-    </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+    <h1>Configure</h1>
+      <div id="configurations">
+        <div class="row mt-4">
+          <div class="col-3">
+            <%= list_group_menu(LedgerReduxRegistry.nested_namespaces) %>
+          </div>
 
-    <div class="col-8">
-      <%= list_tab_panels(LedgerReduxRegistry.namespace_features_hash.values.flatten, LedgerReduxRegistry) %>
+          <div class="col-8">
+            <%= list_tab_panels(LedgerReduxRegistry.namespace_features_hash.values.flatten, LedgerReduxRegistry) %>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        var prevTarget;
+
+        $('a[data-toggle="list"]').on('click', function(e) {
+          if (prevTarget != undefined) {
+            $(prevTarget).removeClass('active');
+          }
+          prevTarget = e.target;
+        })
+      </script>
+
+      <style>
+        #configurations .list-group-item {
+          color: black;
+          background-color: #fff;
+        }
+      </style>
     </div>
   </div>
 </div>
-
-<script>
-  var prevTarget;
-
-  $('a[data-toggle="list"]').on('click', function (e) {
-    if (prevTarget != undefined){
-      $(prevTarget).removeClass('active');
-    }
-    prevTarget = e.target;
-  })
-</script>
-
-<style>
-   #configurations .list-group-item {
-      color: black;
-      background-color: #fff;
-   }
-</style>
