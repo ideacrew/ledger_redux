@@ -20,13 +20,13 @@ ENV BUNDLE_APP_CONFIG=$BUNDLE_PATH \
     BUNDLE_BIN=$BUNDLE_PATH/bin
 ENV PATH /ledger_redux/bin:$BUNDLE_BIN:$PATH
 
-ARG BUNDLER_VERSION
-
+ARG BUNDLER_VERSION_OVERRIDE
+RUN echo $BUNDLER_VERSION_OVERRIDE
 RUN apt-get update && \
     apt-get -yq dist-upgrade && \
     apt-get install -y imagemagick tzdata build-essential nodejs vim && \
     apt-get autoremove -y && \ 
-    gem install bundler:$BUNDLER_VERSION && \
+    gem install bundler:$BUNDLER_VERSION_OVERRIDE && \
     npm install --global yarn 
 
 COPY . $HOME

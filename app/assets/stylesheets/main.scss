@@ -58,11 +58,20 @@ $secondary: theme-color("pinky");
     background-color: $primary;
     h1 {
         font-size: 1rem;
+        color: color("purple");
     }
     a {
         // color: #ffb300;
         color: #000000;
     }
+}
+
+.tony {
+  color: theme-color("pinky");
+}
+
+.dan {
+  color: theme-color("blue-greeny");
 }
 
 .sidebar-wrapper {

@@ -6,7 +6,7 @@ services:
       target: ledger_redux_base
       dockerfile: ./.docker/development/Dockerfile
       args:
-        BUNDLER_VERSION: '2.1.4'
+        BUNDLER_VERSION_OVERRIDE: '2.1.4'
     image: ledger_redux:dev-0.1.0
     links:
       - db
@@ -38,6 +38,13 @@ services:
       - SMTP_DOMAIN=${SMTP_DOMAIN:-ideacrew.com}
       - SMTP_USERNAME=${SMTP_USERNAME:-username}
       - SMTP_PASSWORD=${SMTP_PASSWORD:-password}
+      - WF_API_KEY=${WF_API_KEY:-1234567890}
+      - WF_BILLER_KEY=${WF_API_KEY:-1234567890}
+      - WF_API_SECRET=${WF_API_KEY:-1234567890}
+      - WF_PRIVATE_KEY=${WF_API_KEY:-1234567890}
+      - QB_CLIENT_ID=${QB_CLIENT_ID:-1234567890}
+      - QB_CLIENT_SECRET=${QB_CLIENT_SECRET:-1234567890}
+      - QB_REALM_ID=${QB_REALM_ID:-1234567890}
     command: bash -c "rm -f tmp/pids/server.pid && mkdir -p tmp/pids && yarn install --check-files && bundle exec rails assets:precompile && bundle exec puma -C config/puma.rb"
   db:
     image: postgis/postgis:12-3.0
@@ -49,8 +56,78 @@ services:
     environment:
       - POSTGRES_DB=ledger_redux_development
       - POSTGRES_PASSWORD=postgres_local
+  enroll_web:
+    image: enroll:dev-0.1.0
+    links:
+      - enroll_db
+    ports:
+      - "3001:3000"
+    volumes:
+      - enroll_bundle:/bundle
+      - enroll_node_modules:/enroll/node_modules
+    environment:
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - DB_DATABASE=enroll_development
+      - DB_USERNAME=enroll
+      - DB_PASSWORD=enroll_local
+      - DB_HOST=enroll_db
+      - DB_PORT=27017
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AKIA123456789}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AbcD987654321}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - AWS_S3_ROOT_NAMESPACE=${AWS_S3_ROOT_NAMESPACE:-root_bucket}
+      - AWS_BUCKET_ROOT_NAMESPACE=${AWS_BUCKET_ROOT_NAMESPACE:-root_bucket}
+      - ACTION_MAILER_HOST=${ACTION_MAILER_HOST:-localhost}
+      - HBX_ID=${HBX_ID:-dc0}
+      - ENV_NAME=${ENV_NAME:-dev}
+      - ACAPI_BROKER_HOST=${ACAPI_BROKER_HOST:-amqp}
+      - ACAPI_BROKER_PORT=${ACAPI_BROKER_PORT:-5672}
+      - RABBITMQ_URL=${RABBITMQ_URL:-amqp://guest:guest@amqp:5672}
+    command: bash -c "rm -f tmp/pids/server.pid && mkdir -p tmp/pids && yarn install --check-files && bundle install && bundle exec puma -C config/puma.rb"
+  enroll_remote_event_listener:
+    image: enroll:dev-0.1.0
+    ports:
+      - 3000
+    links:
+      - enroll_db
+    volumes:
+      - enroll_bundle:/bundle
+      - enroll_node_modules:/enroll/node_modules
+    environment:
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - DB_DATABASE=enroll_development
+      - DB_USERNAME=enroll
+      - DB_PASSWORD=enroll_local
+      - DB_HOST=enroll_db
+      - DB_PORT=27017
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AKIA123456789}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AbcD987654321}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - AWS_S3_ROOT_NAMESPACE=${AWS_S3_ROOT_NAMESPACE:-root_bucket}
+      - AWS_BUCKET_ROOT_NAMESPACE=${AWS_BUCKET_ROOT_NAMESPACE:-root_bucket}
+      - ACTION_MAILER_HOST=${ACTION_MAILER_HOST:-localhost}
+      - HBX_ID=${HBX_ID:-dc0}
+      - ENV_NAME=${ENV_NAME:-dev}
+      - ACAPI_BROKER_HOST=${ACAPI_BROKER_HOST:-amqp}
+      - ACAPI_BROKER_PORT=${ACAPI_BROKER_PORT:-5672}
+      - RABBITMQ_URL=${RABBITMQ_URL:-amqp://guest:guest@amqp:5672}
+    command: bash -c "rm -f tmp/pids/server.pid && mkdir -p tmp/pids && sleep 20 && bundle exec rails runner script/remote_event_listener.rb"
+  enroll_db:
+    image: mongo:4.2
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/db_config
+    ports:
+      - 27017:27017
   amqp:
     image: rabbitmq:3.8-management
+    build:
+      context: .
+      dockerfile: ./.docker/development/Dockerfile.rabbitmq
+      args:
+        HBX_ID: 'dc0'
+        ENV_NAME: 'dev'
+    image: ledger_redux_amqp:dev-0.1.0
     container_name: rabbitmq
     volumes:
       - rabbitmq_etc:/etc/rabbitmq/
@@ -58,8 +135,8 @@ services:
       - rabbitmq_logs:/var/log/rabbitmq/
     environment:
       - RABBITMQ_ERLANG_COOKIE=${RABBITMQ_ERLANG_COOKIE:-123456789}
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-guest}
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-guest}
+      - RABBITMQ_USER=${RABBITMQ_DEFAULT_USER:-guest}
+      - RABBITMQ_PASSWORD=${RABBITMQ_DEFAULT_PASS:-guest}
     ports:
       - 4369
       - 5672:5672
@@ -70,7 +147,11 @@ volumes:
   rails_cache:
   bundle:
   node_modules:
+  enroll_bundle:
+  enroll_node_modules:
   packs:
   rabbitmq_etc:
   rabbitmq_data:
   rabbitmq_logs:
+  mongodb:
+  mongodb_config:

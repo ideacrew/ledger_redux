@@ -63,6 +63,11 @@ gem 'rails-i18n',           '~> 6.0'
 
 gem 'rack-attack',          '~> 6.3'
 
+gem 'rack-cors'
+gem 'knock'
+gem 'jwt',                 '~> 1.5'
+gem 'fast_jsonapi'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

@@ -326,6 +326,8 @@ GEM
       faraday (>= 0.8, < 2)
     faraday_middleware (1.0.0)
       faraday (~> 1.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffaker (2.15.0)
     ffi (1.13.1)
     font-awesome-rails (4.7.0.5)
@@ -354,6 +356,11 @@ GEM
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
     jsonapi-renderer (0.2.2)
+    jwt (1.5.6)
+    knock (2.1.1)
+      bcrypt (~> 3.1)
+      jwt (~> 1.5)
+      rails (>= 4.2)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -421,6 +428,8 @@ GEM
     rack (2.2.3)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -611,11 +620,14 @@ DEPENDENCIES
   dry-struct (~> 1.0)
   dry-validation (~> 1.5)
   factory_bot_rails
+  fast_jsonapi
   fat_free_crm!
   ffaker (>= 2)
   font-awesome-rails
   jbuilder (~> 2.7)
   json_spec
+  jwt (~> 1.5)
+  knock
   listen (~> 3.2)
   mime-types
   pg (>= 0.18, < 2.0)
@@ -627,6 +639,7 @@ DEPENDENCIES
   puma (~> 4.1)
   qbo!
   rack-attack (~> 6.3)
+  rack-cors
   rails (~> 6.0.3)
   rails-i18n (~> 6.0)
   resource_registry!
