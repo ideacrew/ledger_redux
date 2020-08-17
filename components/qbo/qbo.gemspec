@@ -27,5 +27,22 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.3", ">= 6.0.3.2"
 
+  # gem for integrating with QuickBooks Online
+  spec.add_dependency 'qbo_api'
+  spec.add_dependency 'typhoeus',       '~> 1.4'
+  spec.add_dependency 'simple_form',    '~> 5.0'
+
+  spec.add_dependency 'dry-validation', '~> 1.5'
+  spec.add_dependency 'dry-struct',     '~> 1.0'
+  spec.add_dependency 'dry-monads',     '~> 1.3'
+  spec.add_dependency 'dry-matcher',    '~> 0.8'
+
   spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency 'rspec-rails', '~> 4.0.0'
+  spec.add_development_dependency 'json_spec'
+  spec.add_development_dependency 'database_cleaner-active_record'
+  spec.add_development_dependency 'factory_bot_rails'
+  spec.add_development_dependency 'yard', '~> 0.9'
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency 'pry-byebug'
 end

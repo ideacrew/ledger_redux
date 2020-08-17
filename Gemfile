@@ -18,7 +18,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -30,11 +30,11 @@ gem 'jbuilder', '~> 2.7'
 
 # QuickBooks Online engine
 # Engine created with following command line options: 
-# $ rails plugin new components/qbo --skip_active_storage --skip_action_text --skip-action-mailer --skip-action-mailbox --mountable
+# $ rails plugin new components/qbo --skip_active_storage --skip_action_text --skip-action-mailer --skip-action-mailbox --skip-test --mountable
 gem 'qbo', path: 'components/qbo'
 
-# gem 'fat_free_crm',       git:  'https://github.com/ideacrew/fat_free_crm.git', branch: 'release_0.3.1'
-gem 'fat_free_crm',       path:  './vendor/plugins/fat_free_crm'
+gem 'fat_free_crm',         git:  'https://github.com/ideacrew/fat_free_crm.git', branch: 'ledger'
+# gem 'fat_free_crm',         path:  './vendor/plugins/fat_free_crm'
 
 gem 'resource_registry',    git:  'https://github.com/ideacrew/resource_registry.git', branch: 'branch_0.8.0'
 # gem 'resource_registry',  path:  './vendor/plugins/resource_registry'
@@ -56,7 +56,7 @@ gem 'dry-matcher',          '~> 0.8'
 gem 'mime-types'
 gem 'rails-i18n',           '~> 6.0'
 
-# gem 'rack-attack',          '~> 6.3'
+gem 'rack-attack',          '~> 6.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
