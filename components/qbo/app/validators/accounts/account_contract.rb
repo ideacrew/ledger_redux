@@ -48,4 +48,5 @@ module Accounts
       optional(:"CurrentBalance").value(:integer)
     end
   end
+
 end
