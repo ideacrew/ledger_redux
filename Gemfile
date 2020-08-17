@@ -33,6 +33,11 @@ gem 'bcrypt', '~> 3.1.7'
 # $ rails plugin new components/qbo --skip_active_storage --skip_action_text --skip-action-mailer --skip-action-mailbox --skip-test --mountable
 gem 'qbo', path: 'components/qbo'
 
+# Wells Fargo Financial Services Provider engine
+# Engine created with following command line options: 
+# $ rails plugin new components/wf --api --skip-test --mountable
+gem 'wf', path: 'components/wf'
+
 gem 'fat_free_crm',         git:  'https://github.com/ideacrew/fat_free_crm.git', branch: 'ledger'
 # gem 'fat_free_crm',         path:  './vendor/plugins/fat_free_crm'
 
