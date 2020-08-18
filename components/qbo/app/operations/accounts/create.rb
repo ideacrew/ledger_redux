@@ -17,8 +17,73 @@ module Accounts
     end
 
     def create(values)
-      response = Try { AwsConnection.create_user(values.to_h) }
+      api = ::QboApi.new(access_token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..DWsMe5Rv8qJijtJ1b85tkg.2vR9OKybuhZqzwp97XcLjg5zwdHCP02b3R4wMsd-EnwRMI7J9RVIqi2eiXFn-gPJ2lQh1lQ13HmVOtdqM5shXCycO2FirtO7QZR1zn1_IQBNUx_l1WgqXKdhJwJd9LVNXaw8k4aci83sw4NIPvASllWmhnTNXAIWlWh3TD1bY2OGdaZWKJBKQHM26P-8uTc7R4imv40NUe7Y0iPL6Qjtl4UbB62zPIeUWBdEkDaknmWORfcJrLYTNnztUG2A8cyZlDgTZmV5OPHpSEmDmdLxq0e7al3RAlDIuVb-jy2zMk3O5TzYQKq5aN_uP9cv9E3xNMfTWLF5GhzgFCG8ow_-fu7t9Et4t1j68zUxAuLfY11NPF-XkDp-UXI7wZUsaCR7TBfi2IzsTeUntwiHDNH0rZdJs3GtgB2AnFDbVnOCdOkmoBkIHSBb_apf4NTjeVgc4HfZLe-rzmYa1tFqPB7MVPQ4Mb7KifflaLcYZ1c3IZXgp2x2Rsv_V1ZCsCL8gsvy-0O7FXvkp6bAuwDEgpxa_oLV8VmA9uHMQTv9TPbiWPMpaGOnotn1tTo2hDWTcnIWeF61Gqv7zLVhkUdYVFugWZKRmyXRQGdwd1C9J_vG8Q814leB3NLFQmYqE_j0hYs4S83nLZW0EfLNxBDnKki-qohpURdk4jAPqr5Qtv3Uifs6BpNri0hxH9Jmw8_jA54Zly0TBaGaiGKRhIhIJkQXrNFrxyq3Ko7YlyyiBi01tDkyweswXFvLoBiJ6QPFpffHyoTDbUqn2FJ_zvNBDkCHw3NCh6a3ZiVV9k6N7xmzFUMgBgsTm0fdvJFiMWr9lGRVNYQHXIqJSN5SzqHlrMiOOVxD6wlxgBoRc0WWYY7-DUwo-vI2aJg4yal-dRW0vIip.LKB6pQDT8g4LZGp1hIWs0w", realm_id: "4620816365064531070")
+      response = Try { api.create(:account, payload: values.to_h) }
       response.to_result      
     end
   end
 end
+  
+
+
+
+
+# class QuickBooks::AccountImporter
+#   def initialize(credentials: nil, accounts: [])
+#       @credentials = credentials
+#       @accounts = accounts
+#       @api = QboApi.new(access_token: credentials.access_token, realm_id: credentials.realm)
+#   end
+
+#   def build_payload(account)
+#       {
+#           "AcctNum": account["account_number"],
+#           "Name": account["account_name"],
+#           "AccountType": account["account_type"],
+#           "AccountSubType": account["account_subtype"]
+#       }
+#   end
+
+#   # Validate each account
+#   def validate
+#       # TODO
+#   end
+
+#   def api
+#       @api
+#   end
+
+#   def create!
+#       @accounts.each do |account|
+#          @api.create(:account, payload(account))
+#       end
+#   end
+# end
+
+
+# {
+#  "Account": {
+#   "Name": "TonyHarshaTest2",
+#   "SubAccount": false,
+#   "FullyQualifiedName": "TonyHarshaTest2",
+#   "Active": true,
+#   "Classification": "Asset",
+#   "AccountType": "Accounts Receivable",
+#   "AccountSubType": "AccountsReceivable",
+#   "CurrentBalance": 0,
+#   "CurrentBalanceWithSubAccounts": 0,
+#   "CurrencyRef": {
+#    "value": "USD",
+#    "name": "United States Dollar"
+#   },
+#   "domain": "QBO",
+#   "sparse": false,
+#   "Id": "138",
+#   "SyncToken": "0",
+#   "MetaData": {
+#    "CreateTime": "2020-08-18T09:48:52-07:00",
+#    "LastUpdatedTime": "2020-08-18T09:48:52-07:00"
+#   }
+#  },
+#  "time": "2020-08-18T09:48:52.829-07:00"
+# }
