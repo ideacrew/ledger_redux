@@ -32,8 +32,8 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
 
-  config.include SimpleFormHelpers, type: :simple_form_input
-  config.include InputExampleGroup, type: :input
+  # config.include SimpleFormHelpers, type: :simple_form_input
+  # config.include InputExampleGroup, type: :input
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
