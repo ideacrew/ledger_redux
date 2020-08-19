@@ -34,5 +34,8 @@ module LedgerRedux
     config.active_record.belongs_to_required_by_default = false
     
     config.middleware.use Rack::Attack
+    unless Rails.env.test?
+      config.acapi.add_async_subscription("Subscribers::ProcessAccounts")
+    end
   end
 end
