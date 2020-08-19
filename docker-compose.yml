@@ -57,7 +57,7 @@ services:
       - POSTGRES_DB=ledger_redux_development
       - POSTGRES_PASSWORD=postgres_local
   enroll_web:
-    image: enroll:dev-0.1.0
+    image: ideacrew/enroll:dev-0.1.0
     links:
       - enroll_db
     ports:
@@ -85,7 +85,7 @@ services:
       - RABBITMQ_URL=${RABBITMQ_URL:-amqp://guest:guest@amqp:5672}
     command: bash -c "rm -f tmp/pids/server.pid && mkdir -p tmp/pids && yarn install --check-files && bundle install && bundle exec puma -C config/puma.rb"
   enroll_remote_event_listener:
-    image: enroll:dev-0.1.0
+    image: ideacrew/enroll:dev-0.1.0
     ports:
       - 3000
     links:
