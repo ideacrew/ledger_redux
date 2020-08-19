@@ -75,6 +75,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'sass'
 gem 'premailer'
 gem 'font-awesome-rails'
+gem 'acapi',              git: "https://github.com/dchbx/acapi.git", branch: 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

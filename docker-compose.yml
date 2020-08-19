@@ -25,6 +25,10 @@ services:
       - DB_PASSWORD=postgres_local
       - DB_HOST=db
       - DB_PORT=5432
+      - AMQP_HOST=${AMQP_HOST:-amqp}
+      - AMQP_PORT=${AMQP_PORT:-5672}
+      - AMQP_USERNAME=${AMQP_USERNAME:-guest}
+      - AMQP_PASSWORD=${AMQP_PASSWORD:-guest}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AKIA123456789}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AbcD987654321}
       - AWS_REGION=${AWS_REGION:-us-east-1}
@@ -57,7 +61,7 @@ services:
       - POSTGRES_DB=ledger_redux_development
       - POSTGRES_PASSWORD=postgres_local
   enroll_web:
-    image: enroll:dev-0.1.0
+    image: ideacrew/enroll:dev-0.1.0
     links:
       - enroll_db
     ports:
@@ -85,7 +89,7 @@ services:
       - RABBITMQ_URL=${RABBITMQ_URL:-amqp://guest:guest@amqp:5672}
     command: bash -c "rm -f tmp/pids/server.pid && mkdir -p tmp/pids && yarn install --check-files && bundle install && bundle exec puma -C config/puma.rb"
   enroll_remote_event_listener:
-    image: enroll:dev-0.1.0
+    image: ideacrew/enroll:dev-0.1.0
     ports:
       - 3000
     links:
