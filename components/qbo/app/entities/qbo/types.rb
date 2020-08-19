@@ -21,7 +21,7 @@ module Qbo::Types
     'OtherEarMarkedBankAccounts'
   )
 
-  AssetAccountOtherCurrentAssetKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum(
+  AssetAccountOtherCurrentAssetKind = Types::Coercible::String.default('EmployeeCashAdvances').enum(
     'AllowanceForBadDebts',
     'DevelopmentCosts',
     'EmployeeCashAdvances',
@@ -55,19 +55,19 @@ module Qbo::Types
   AssetAccountOtherAssetKind  = Types::Coercible::String.enum('Accounts Receivable')
   AssetAccountAccountsReceivableKind  = Types::Coercible::String.enum('Accounts Receivable')
 
-  EquityAccountEquityKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
+  EquityAccountEquityKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
 
-  ExpenseAccountExpenseKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
-  ExpenseAccountOtherExpenseKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
-  ExpenseAccountCogsKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
+  ExpenseAccountExpenseKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
+  ExpenseAccountOtherExpenseKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
+  ExpenseAccountCogsKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
 
-  LiabilityAccountAccountsPayableKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
-  LiabilityAccountCreditCardKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
-  LiabilityAccountLongTermLiabilityKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
-  LiabilityAccountOtherCurrentLiabilityKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
+  LiabilityAccountAccountsPayableKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
+  LiabilityAccountCreditCardKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
+  LiabilityAccountLongTermLiabilityKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
+  LiabilityAccountOtherCurrentLiabilityKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
 
-  RevenueAccountIncomeKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
-  RevenueAccountOtherIncomeKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum()
+  RevenueAccountIncomeKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
+  RevenueAccountOtherIncomeKind = Types::Coercible::String.default('EmployeeCashAdvances'.freeze).enum('EmployeeCashAdvances')
 
   # Dublin Core Metadata
   DcmiType            = Types::Coercible::Symbol.default(:text).enum(
@@ -91,8 +91,6 @@ module Qbo::Types
 
   # OSHA Types
   BinaryGenderKind    = Types::Coercible::Symbol.enum(:male, :female)
-
-
   ContactCaseKind     = Types::Coercible::Symbol.enum(:contact_exposure_case, :contact_index_case)
   WorkRelatedKind     = Types::Coercible::Symbol.enum(:contact_exposure_case, :contact_index_case)
 
