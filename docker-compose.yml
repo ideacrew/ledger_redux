@@ -25,6 +25,10 @@ services:
       - DB_PASSWORD=postgres_local
       - DB_HOST=db
       - DB_PORT=5432
+      - AMQP_HOST=${AMQP_HOST:-amqp}
+      - AMQP_PORT=${AMQP_PORT:-5672}
+      - AMQP_USERNAME=${AMQP_USERNAME:-guest}
+      - AMQP_PASSWORD=${AMQP_PASSWORD:-guest}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AKIA123456789}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AbcD987654321}
       - AWS_REGION=${AWS_REGION:-us-east-1}
