@@ -10,7 +10,7 @@ module Customers
     attribute :"FamilyName",                     Types::Strict::String.meta(omittable: true)
 
     attribute :"Id",                             Types::Strict::String.meta(omittable: false)
-    attribute :"ParentRef"                       Types::Strict::String.meta(omittable: false)
+    attribute :"ParentRef",                      Types::Strict::String.meta(omittable: false)
     attribute :"SyncToken",                      Types::Strict::String.meta(omittable: true)
     attribute :"domain",                         Types::Strict::String.meta(omittable: true)
 
