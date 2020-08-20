@@ -53,6 +53,7 @@ gem 'simple_form',          '~> 5.0'
 gem 'aws-sdk-s3'
 gem "typhoeus",             '~> 1.4'
 gem 'symmetric-encryption', '~> 4.3'
+gem 'ox'
 
 gem 'dry-validation',       '~> 1.5'
 gem 'dry-struct',           '~> 1.0'

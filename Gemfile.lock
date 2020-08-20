@@ -663,6 +663,7 @@ DEPENDENCIES
   knock
   listen (~> 3.2)
   mime-types
+  ox
   pg (>= 0.18, < 2.0)
   poly_press!
   premailer
