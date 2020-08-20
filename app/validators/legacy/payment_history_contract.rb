@@ -21,20 +21,15 @@ module Legacy
     # @return [Dry::Monads::Result] Result
 
     params do
-      required(:ref_no).filled(:string)
       required(:customer_code).filled(:string)
-      required(:date_received).filled(:date)
-      required(:amount).filled(:string)
-      required(:payment_method).filled(:symbol)
+      required(:payments).array(:hash)
+    end
 
-      optional(:payee_name).maybe(:string)
-      optional(:cheque_no) .maybe(:string)
-      optional(:address1).maybe(:string)
-      optional(:address2).maybe(:string)
-      optional(:city).maybe(:string)
-      optional(:state).maybe(:string)
-      optional(:zip).maybe(:string)
-      optional(:payment_transaction_id).maybe(:string)
+    rule(:payments).each do |key, value|
+      if key? && value
+        result = Legacy::Payment.new.call(value)
+        key.failure(text: "invalid payment", error: result.errors.to_h) if result&.failure?
+      end
     end
   end
 

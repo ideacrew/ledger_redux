@@ -1,0 +1,2 @@
+class BenefitApplicationEvent < ApplicationRecord
+end

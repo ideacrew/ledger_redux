@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_222728) do
+ActiveRecord::Schema.define(version: 2020_08_19_193101) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
+  enable_extension "postgis"
+  enable_extension "postgis_tiger_geocoder"
+  enable_extension "postgis_topology"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +38,24 @@ ActiveRecord::Schema.define(version: 2020_08_19_222728) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "benefit_application_events", force: :cascade do |t|
+    t.string "type", null: false
+    t.text "data", null: false
+    t.text "metadata", null: false
+    t.datetime "created_at", null: false
+    t.integer "benefit_application_id"
+    t.index ["benefit_application_id"], name: "index_benefit_application_events_on_benefit_application_id"
+  end
+
+  create_table "benefit_applications", force: :cascade do |t|
+    t.string "hbx_id", null: false
+    t.string "legal_name"
+    t.string "dba"
+    t.string "fein", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "fat_free_crm_account_contacts", id: :serial, force: :cascade do |t|

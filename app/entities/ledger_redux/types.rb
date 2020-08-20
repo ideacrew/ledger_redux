@@ -5,7 +5,7 @@ require 'dry-types'
 module LedgerRedux
   module Types
     send(:include, Dry.Types())
-    include Dry::Logic
+    send(:include, Dry::Logic)
 
     # Dublin Core Metadata
 
@@ -28,75 +28,7 @@ module LedgerRedux
       "http://purl.org/dc/dcam/"
     )
 
-    # OSHA Types
-    BinaryGenderKind    = Types::Coercible::Symbol.enum(:male, :female)
-
-
-    ContactCaseKind     = Types::Coercible::Symbol.enum(:contact_exposure_case, :contact_index_case)
-    WorkRelatedKind     = Types::Coercible::Symbol.enum(:contact_exposure_case, :contact_index_case)
-
-    AccountCategoryKind = Types::Coercible::Symbol.enum(:my_organization, :contact_employer, :health_care_provider, :public_health_agency, :testing_lab, :vendor, :other)
-    ContactCategoryKind = Types::Coercible::Symbol.enum(:contact_representative, :contractor, :customer, :employee, :faculty, :guest, :health_care_provider, :public_health_agency_reppresentative, :staff, :student, :other)
-
-    ## CDC Types
-
-    ConsentKind         = Types::Coercible::Symbol.enum(:text_message, :email_message, :electronic_notices, :lab_results)
-    GenderKind          = Types::Coercible::Symbol.enum(:male, :female, :other, :unknown)
-
-    YesNoUnknownKind    = Types::Coercible::Symbol.default(:no).enum(:yes, :no, :unknown, :refused)
-    YesNoPartialKind    = Types::Coercible::Symbol.default(:no).enum(:yes, :no, :partial, :refused)
-    YesNoKind           = Types::Coercible::Symbol.default(:no).enum(:yes, :no)
-    AttestationKind     = Types::Coercible::Symbol.enum(:yes_no)
-    GuideKind           = Types::Coercible::Symbol.enum(:internal, :external)
-
-    InjuryOrIllnessKind = Types::Coercible::Symbol.default(:other_illness).enum(:injury, :skin_disorder, :respiratory_condition, :poisoning, :hearing_loss, :other_illness)
-    CaseOutcomeKind     = Types::Coercible::Symbol.enum(:death, :away_from_work, :job_transfer_or_restriction, :other_recordable_cases)
-
-    EmploymentKind            = Types::Coercible::Symbol.enum(:employed, :unemployed, :unemployed_covid, :retired, :unable_to_work, :student, :minor, :unknown)
-    ContactSettingKind        = Types::Coercible::Symbol.enum(:home, :school, :dahy_care, :workplace, :place_of_worship, :shelter, :health_medical_care, :travel_or_transit, :retail)
-    HealthCareSettingKind     = Types::Coercible::Symbol.enum(:hospital, :ambulatory_care, :first_responder, :urgent_care, :long_term_care, :hospice)
-    PreExistingConditionKind  = Types::Coercible::Symbol.enum(:chronic_lung_disease, :diabetes, :severe_obesity, :cvd, :chronic_renal_disease, :chronic_liver_disease, :immunocompromised, :pregnant)
-    CongregateSettingKind     = Types::Coercible::Symbol.enum(:corrections, :dorm, :group_home, :multi_family_hh, :multi_generational_hh)
-    LocationKind              = Types::Coercible::Symbol.enum(:congregate_settings, :correctional_facilities, :workplaces, :health_care, :schools_and_childcare, :homeless_shelters)
-
-    HighRiskOccupationKind    = Types::Coercible::Symbol.enum(:first_responder, :health_care_worker, :law_enforcement)
-
-    SymptomKind               = Types::Coercible::Symbol.enum(:fever, :cough, :shortness_of_breath, :diarrhea, :headache,
-                                                              :muscle_ache, :chills, :sore_throat, :vomiting, :abdominal_pain,
-                                                              :loss_of_taste, :loss_of_smell, :nasal_congestion, :malaise, :fatigue)
-    ## End CDC Types
-
-    ResourceKind        = Types::Coercible::Symbol.enum(:recording)
-
-    InvestigationKind           = Types::Coercible::Symbol.enum(:clinical_monitoring, :contact_elicitation, :contact, :index_case)
-    IndexCaseInvestigationKind  = Types::Coercible::Symbol.enum(:clinical_monitoring, :contact_elicitation, :index_case)
-    ContactInvestigationKind    = Types::Coercible::Symbol.enum(:clinical_monitoring, :contact)
-
-    UserAdminKind       = Types::Bool.default(false).enum(true, false)
-
-    StatusKindKind      = Types::Coercible::Symbol.enum(:hospitalized, :self_quarantining, :isolating, :unknown)
-
-    VitalKind           = Types::Coercible::Symbol.default(:living).enum(:living, :deceased)
-    TestKind            = Types::Coercible::Symbol.enum(:virus, :antibody)
-
-
-    ExposureKind        = Types::Coercible::Symbol.enum(:limited, :moderate, :significant)
-
-    RaceKind            = Types::Coercible::Symbol.enum(:white, :asian, :antive_american, :black, :native_hawaiian, :other, :not_specified)
-    EthnicityKind       = Types::Coercible::Symbol.enum(:white)
-
-    ResidenceKind       = Types::Coercible::Symbol.enum(:single_family, :apartment, :group, :incarcerated, :homeless, :unknown)
-    RelationshipKind    = Types::Coercible::Symbol.enum(:self, :spouse, :partner, :child, :parent, :grandparent, :grandchild,
-                                                        :aunt, :uncle, :nephew, :niece, :friend, :other)
-
-    # EmployeeStatusKind = Types::Coercible::Symbol.enum(:)
-
-    AbsenceKind         = Types::Coercible::Symbol.enum(:pto, :covid_19_isolation, :covid_19_quarantine, :unknown)
-
-    AccountAddressKind  = Types::Coercible::Symbol.default(:headquarters).enum(:billing, :shipping, :satellite, :headquarters)
-    ContactAddressKind  = Types::Coercible::String.default("Business").enum("Billing", "Shipping", "Work", "Home", 'Business')
-
-    Duration            = Types.Constructor(ActiveSupport::Duration) {|val| ActiveSupport::Duration.build(val) }
+    AccountKind = Types::Coercible::Symbol.enum(:accounts_receivable)
 
     # E.164 Standard
     PhoneNumber       = Types::String.constrained(format: /^\+(?:[0-9] ?){6,14}[0-9]$/)
