@@ -3,13 +3,13 @@
 module Customers
   class Customer < Dry::Struct
 
-    attribute :"GivenName",                      Types::Strict::String.meta(omittable: true)
+    attribute :"GivenName",                      Types::Strict::String.meta(omittable: false)
     attribute :"DisplayName",                    Types::Strict::String.meta(omittable: true)
     attribute :"FullyQualifiedName",             Types::Strict::String.meta(omittable: true)
     attribute :"CompanyName",                    Types::Strict::String.meta(omittable: true)
     attribute :"FamilyName",                     Types::Strict::String.meta(omittable: true)
 
-    attribute :"Id",                             Types::Strict::String.meta(omittable: false)
+    attribute :"Id",                             Types::Strict::String.meta(omittable: true)
     attribute :"SyncToken",                      Types::Strict::String.meta(omittable: true)
     attribute :"domain",                         Types::Strict::String.meta(omittable: true)
 

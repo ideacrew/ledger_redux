@@ -1,4 +1,4 @@
-Account Number,Account Name,Type,Detail Type,
+AcctNum,Name,AccountType,AccountSubType,
 1000,Cash,Bank,Checking,
 1100,Accounts Receivable,Accounts Receivable (A/R),Accounts Receivable (A/R),
 1200,Group Premium Deferrals Receivable,Other Current Assets,Loans to Others,

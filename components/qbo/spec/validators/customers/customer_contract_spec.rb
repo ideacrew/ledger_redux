@@ -4,17 +4,17 @@ require 'rails_helper'
 
 RSpec.describe Customers::CustomerContract do
 
-  let(:id)    { { :"Id" => '2' } }
+  let(:diaplay_name)    { { "DisplayName": "Bill's Windsurf Shop" } }
 
   let(:customer) { 
      {
         "PrimaryEmailAddr": {
           "Address": "Surf@Intuit.com"
-        }, 
+        },
+        "Id": "123",
         "SyncToken": "0", 
         "domain": "QBO", 
         "GivenName": "Bill", 
-        "DisplayName": "Bill's Windsurf Shop", 
         "BillWithParent": false, 
         "FullyQualifiedName": "Bill's Windsurf Shop", 
         "CompanyName": "Bill's Windsurf Shop", 
@@ -35,7 +35,7 @@ RSpec.describe Customers::CustomerContract do
           "CountrySubDivisionCode": "CA", 
           "Id": "3"
         }, 
-        "PreferredDeliveryMethod": "Print", 
+        "PreferredDeliveryMethod": "Print",
         "Taxable": false, 
         "PrintOnCheckName": "Bill's Windsurf Shop", 
         "Balance": 85, 
@@ -46,7 +46,7 @@ RSpec.describe Customers::CustomerContract do
       }
    }
 
-  let(:required_params)     { id }
+  let(:required_params)     { diaplay_name }
   let(:optional_params)     { customer }
   let(:all_params)          { required_params.merge(optional_params) }
 
@@ -62,7 +62,7 @@ RSpec.describe Customers::CustomerContract do
 
     context "with optional parameters only" do
       it { expect(subject.call(optional_params).success?).to be_falsey }
-      it { expect(subject.call(optional_params).error?(:"Id")).to be_truthy }
+      it { expect(subject.call(optional_params).error?(:"DisplayName")).to be_truthy }
     end
   end
 
