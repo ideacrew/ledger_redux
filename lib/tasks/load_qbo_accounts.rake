@@ -11,7 +11,7 @@ task :load_qbo_accounts => :environment do
   
   puts "processing #{account_params.count} accounts"
   account_params.each do |params|
-    result = Accounts::Create.new.call(params)
+    result = Qbo::Accounts::Create.new.call(params)
     
     if result.success?
       puts "created account #{params[:Name]}"
