@@ -111,6 +111,8 @@ PATH
       dry-monads (~> 1.3)
       dry-struct (~> 1.0)
       dry-validation (~> 1.5)
+      faraday
+      faraday_middleware
       qbo_api
       rails (~> 6.0.3, >= 6.0.3.2)
       typhoeus (~> 1.4)
