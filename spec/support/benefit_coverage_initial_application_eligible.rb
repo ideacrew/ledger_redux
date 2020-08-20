@@ -1,4 +1,4 @@
-h = {
+{
   :organization=> {
     :id => {:id => "1061102"},
     :name => "ACME Widgets, LLC",
