@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_01_155396) do
+ActiveRecord::Schema.define(version: 2020_08_19_222728) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -101,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_07_01_155396) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.point "lonlat"
     t.index ["addressable_id", "addressable_type"], name: "addresses_id_and_type"
   end
 
@@ -484,6 +488,16 @@ ActiveRecord::Schema.define(version: 2020_07_01_155396) do
     t.index ["whodunnit"], name: "index_fat_free_crm_versions_on_whodunnit"
   end
 
+  create_table "qbo_quickbooks_credentials", force: :cascade do |t|
+    t.string "realm_id"
+    t.string "client_id"
+    t.string "client_secret"
+    t.string "refresh_token"
+    t.string "access_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "resource_registry_features", force: :cascade do |t|
     t.string "key"
     t.text "namespace", array: true
@@ -519,13 +533,6 @@ ActiveRecord::Schema.define(version: 2020_07_01_155396) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name"], name: "index_settings_on_name"
-  end
-
-  create_table "spatial_ref_sys", primary_key: "srid", id: :integer, default: nil, force: :cascade do |t|
-    t.string "auth_name", limit: 256
-    t.integer "auth_srid"
-    t.string "srtext", limit: 2048
-    t.string "proj4text", limit: 2048
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

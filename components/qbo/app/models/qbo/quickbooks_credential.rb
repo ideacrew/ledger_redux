@@ -24,12 +24,14 @@ module Qbo
                 conn.use Faraday::Response::RaiseError
             end
             raw_response = connection.post {|req|
-                req.body = { grant_type: :refresh_token, refresh_token: "" }
+                req.body = { grant_type: :refresh_token, refresh_token: self.refresh_token}
                 req.url '/oauth2/v1/tokens/bearer'
             }
-
-            puts "New Token:"
-            puts raw_response.body[:access_token]
+            if raw_response.body[:access_token]
+                self.access_token = aw_response.body[:access_token]
+                self.save
+            end
+            self.access_token
         end
     end
 end
