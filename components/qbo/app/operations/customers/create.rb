@@ -5,9 +5,9 @@ module Customers
 
     def call(params)
       values  = yield validate(params)
-      account = yield create(values)
+      customer = yield create(values)
 
-      Success(account)
+      Success(customer)
     end
 
     private
