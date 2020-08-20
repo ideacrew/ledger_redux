@@ -14,35 +14,35 @@ module Accounts
     json do
       # required(:sample).value(format?: /^a/)
 
-      required(:"Name").filled(max_size?: 100)
+      required(:"Name").filled(Qbo::Types::StrippedString, max_size?: 100)
 
       # required for update
-      optional(:"Id").value(:string)
-      optional(:"SyncToken").value(:string)
+      optional(:"Id").value(Qbo::Types::StrippedString)
+      optional(:"SyncToken").value(Qbo::Types::StrippedString)
 
-      optional(:"AcctNum").value(:string, max_size?: 7)
-      optional(:"AccountType").value(:string)
-      optional(:"AccountSubType").value(:string)
+      optional(:"AcctNum").value(Qbo::Types::StrippedString, max_size?: 7)
+      optional(:"AccountType").value(Qbo::Types::StrippedString)
+      optional(:"AccountSubType").value(Qbo::Types::StrippedString)
 
       optional(:"CurrencyRef").hash do 
-        required(:"value").filled(:string)
-        optional(:"name").value(:string)
+        required(:"value").filled(Qbo::Types::StrippedString)
+        optional(:"name").value(Qbo::Types::StrippedString)
       end
 
       optional(:"ParentRef").hash do 
-        required(:"value").filled(:string)
-        optional(:"name").value(:string)
+        required(:"value").filled(Qbo::Types::StrippedString)
+        optional(:"name").value(Qbo::Types::StrippedString)
       end
 
-      optional(:"Description").value(:string, max_size?: 100)
+      optional(:"Description").value(Qbo::Types::StrippedString, max_size?: 100)
       optional(:"Active").value(:bool)
       optional(:"MetaData").value(:hash)
 
       optional(:"SubAccount").value(:bool)
 
-      optional(:"FullyQualifiedName").value(:string)
-      optional(:domain).value(:string)
-      optional(:"Classification").value(:string)
+      optional(:"FullyQualifiedName").value(Qbo::Types::StrippedString)
+      optional(:domain).value(Qbo::Types::StrippedString)
+      optional(:"Classification").value(Qbo::Types::StrippedString)
       optional(:"CurrentBalanceWithSubAccounts").value(:decimal)
       optional(:sparse).value(:bool)
       optional(:"CurrentBalance").value(:integer)
