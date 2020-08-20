@@ -28,7 +28,7 @@ module Qbo
                 req.url '/oauth2/v1/tokens/bearer'
             }
             if raw_response.body[:access_token]
-                self.access_token = aw_response.body[:access_token]
+                self.access_token = raw_response.body[:access_token]
                 self.save
             end
             self.access_token
