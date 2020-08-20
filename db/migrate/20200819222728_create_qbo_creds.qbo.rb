@@ -1,3 +1,4 @@
+# This migration comes from qbo (originally 20200819220538)
 class CreateQboCreds < ActiveRecord::Migration[6.0]
   def change
     create_table :qbo_quickbooks_credentials do |t|

@@ -30,6 +30,8 @@ Gem::Specification.new do |spec|
   # gem for integrating with QuickBooks Online
   spec.add_dependency 'qbo_api'
   spec.add_dependency 'typhoeus',       '~> 1.4'
+  spec.add_dependency 'faraday'
+  spec.add_dependency 'faraday_middleware'
 
   spec.add_dependency 'dry-validation', '~> 1.5'
   spec.add_dependency 'dry-struct',     '~> 1.0'

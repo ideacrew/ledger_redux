@@ -1,3 +1,6 @@
+require 'faraday_middleware'
+require 'qbo_api'
+
 module Qbo
   class Engine < ::Rails::Engine
     isolate_namespace Qbo
