@@ -2,11 +2,20 @@ module Qbo
   class QuickbooksCredential < ApplicationRecord
 
     def connect
+        return @handler if defined? @handler
+        refresh_if_needed
         @handler ||= QboApi.new(access_token: self.access_token, realm_id: self.realm_id)
     end
 
     def api
         connect
+    end
+
+    def refresh_if_needed    
+        if self.updated_at < 55.minutes.ago
+            refresh_token!
+            self.save
+        end
     end
 
     def build_connection(url, headers: nil)
