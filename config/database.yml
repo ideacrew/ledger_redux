@@ -87,6 +87,6 @@ test:
 #
 production:
   <<: *default
-  database: ledger_redux_production
-  username: ledger_redux
-  password: <%= ENV['LEDGER_REDUX_DATABASE_PASSWORD'] %>
+  #  database: ledger_redux_production
+  #username: ledger_redux
+  #password: <%= ENV['LEDGER_REDUX_DATABASE_PASSWORD'] %>

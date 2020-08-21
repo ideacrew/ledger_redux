@@ -68,6 +68,7 @@ gem 'rack-cors'
 gem 'knock'
 gem 'jwt',                 '~> 1.5'
 gem 'fast_jsonapi'
+gem 'ffaker', '>= 2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -89,8 +90,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop'
   
-  gem 'ffaker', '>= 2'
-
   gem 'json_spec'
   gem 'database_cleaner-active_record'
   gem 'factory_bot_rails'

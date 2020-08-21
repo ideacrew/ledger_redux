@@ -2,7 +2,7 @@
 ### app/rails config ###
 ########################
 
-# FROM ideacrew/ledger_redux_gdal:0.1.0 AS app
+FROM ruby:2.6.5 AS app
 
 LABEL author="IdeaCrew"
 
@@ -41,13 +41,10 @@ RUN yarn install
 ENV RAILS_ENV='production'
 ENV NODE_ENV='production'
 
-# Adding gems
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
-
-RUN bundle install --jobs 20 --retry 5 --without development test 
-
 COPY . .
+
+RUN bundle config set without 'development test' 
+RUN bundle install --jobs 20 --retry 5 
 
 ARG DB_DATABASE
 ARG DB_USERNAME
