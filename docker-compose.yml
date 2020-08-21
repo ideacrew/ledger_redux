@@ -49,6 +49,10 @@ services:
       - QB_CLIENT_ID=${QB_CLIENT_ID:-1234567890}
       - QB_CLIENT_SECRET=${QB_CLIENT_SECRET:-1234567890}
       - QB_REALM_ID=${QB_REALM_ID:-1234567890}
+      - HBX_ID=${HBX_ID:-dc0}
+      - ENV_NAME=${ENV_NAME:-dev}
+      - ACAPI_BROKER_HOST=${ACAPI_BROKER_HOST:-amqp}
+      - ACAPI_BROKER_PORT=${ACAPI_BROKER_PORT:-5672}
     command: bash -c "rm -f tmp/pids/server.pid && mkdir -p tmp/pids && yarn install --check-files && bundle exec rails assets:precompile && bundle exec puma -C config/puma.rb"
   db:
     image: postgis/postgis:12-3.0

@@ -84,6 +84,15 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.acapi.publish_amqp_events = true
+  config.acapi.app_id = "ledger_redux"
+  config.acapi.remote_broker_uri = "amqp://guest:guest@#{ENV['ACAPI_BROKER_HOST']}:#{ENV['ACAPI_BROKER_PORT']}"
+  config.acapi.remote_request_exchange = "#{ENV['HBX_ID']}.#{ENV['ENV_NAME']}.e.fanout.requests"
+  config.acapi.remote_event_queue = "#{ENV['HBX_ID']}.#{ENV['ENV_NAME']}.q.application.ledger_redux.inbound_events"
+  config.action_mailer.default_url_options = { :host => "localhost" }
+  config.acapi.hbx_id = "#{ENV['HBX_ID']}"
+  config.acapi.environment_name = "#{ENV['ENV_NAME']}"
+
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write

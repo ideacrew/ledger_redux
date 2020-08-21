@@ -61,4 +61,14 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.acapi.publish_amqp_events = true
+  config.acapi.app_id = "ledger_redux"
+  config.acapi.remote_broker_uri = "amqp://guest:guest@#{ENV['ACAPI_BROKER_HOST']}:#{ENV['ACAPI_BROKER_PORT']}"
+  config.acapi.remote_request_exchange = "#{ENV['HBX_ID']}.#{ENV['ENV_NAME']}.e.fanout.requests"
+  config.acapi.remote_event_queue = "#{ENV['HBX_ID']}.#{ENV['ENV_NAME']}.q.application.ledger_redux.inbound_events"
+  config.action_mailer.default_url_options = { :host => "localhost" }
+  config.acapi.hbx_id = "#{ENV['HBX_ID']}"
+  config.acapi.environment_name = "#{ENV['ENV_NAME']}"
+
 end
