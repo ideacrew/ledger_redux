@@ -4,14 +4,14 @@ require 'rails_helper'
 
 RSpec.describe Qbo::Customers::SubCustomerContract do
 
-  let(:id)    { { :"Id" => '2' } }
-  let(:parent_ref) { {:ParentRef => "123"} }
+  let(:required_params)    { { "DisplayName": "Bill's Windsurf Shop", "PrimaryTaxIdentifier": "011010110", "ParentRef": "123" } }
 
   let(:customer) { 
      {
         "PrimaryEmailAddr": {
           "Address": "Surf@Intuit.com"
-        }, 
+        },
+        "Id": "12345",
         "SyncToken": "0", 
         "domain": "QBO", 
         "GivenName": "Bill", 
@@ -47,7 +47,6 @@ RSpec.describe Qbo::Customers::SubCustomerContract do
       }
    }
 
-  let(:required_params)     { id.merge(parent_ref) }
   let(:optional_params)     { customer }
   let(:all_params)          { required_params.merge(optional_params) }
 

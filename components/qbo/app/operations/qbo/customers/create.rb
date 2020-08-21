@@ -18,7 +18,10 @@ module Qbo::Customers
 
     def create(values)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
-      response.to_result      
+      if response.success?
+        Qbo::CustomerMap.create
+      response.to_result 
+
     end
   end
 end

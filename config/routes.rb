@@ -20,5 +20,16 @@ Rails.application.routes.draw do
     post 'upload_account'
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :qbo_account_statuses, only: [] do
+        collection do
+          get :payment_history
+          get :current_statement_service
+        end
+      end
+    end
+  end
+
 
 end

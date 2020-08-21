@@ -43,9 +43,9 @@ module Qbo::Accounts
       optional(:"FullyQualifiedName").value(Qbo::Types::StrippedString)
       optional(:domain).value(Qbo::Types::StrippedString)
       optional(:"Classification").value(Qbo::Types::StrippedString)
-      optional(:"CurrentBalanceWithSubAccounts").value(:decimal)
+      optional(:"CurrentBalanceWithSubAccounts").value(Types::Coercible::Float)
       optional(:sparse).value(:bool)
-      optional(:"CurrentBalance").value(:integer)
+      optional(:"CurrentBalance").value(Types::Coercible::Float)
     end
   end
 

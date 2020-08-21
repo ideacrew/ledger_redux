@@ -4,13 +4,14 @@ module Qbo::Customers
   class SubCustomer < Dry::Struct
 
     attribute :"GivenName",                      Types::Strict::String.meta(omittable: true)
-    attribute :"DisplayName",                    Types::Strict::String.meta(omittable: true)
+    attribute :"DisplayName",                    Types::Strict::String.meta(omittable: false)
     attribute :"FullyQualifiedName",             Types::Strict::String.meta(omittable: true)
     attribute :"CompanyName",                    Types::Strict::String.meta(omittable: true)
     attribute :"FamilyName",                     Types::Strict::String.meta(omittable: true)
-
-    attribute :"Id",                             Types::Strict::String.meta(omittable: false)
+    attribute :"PrimaryTaxIdentifier",           Types::Strict::String.meta(omittable: false)
     attribute :"ParentRef",                      Types::Strict::String.meta(omittable: false)
+
+    attribute :"Id",                             Types::Strict::String.meta(omittable: true)
     attribute :"SyncToken",                      Types::Strict::String.meta(omittable: true)
     attribute :"domain",                         Types::Strict::String.meta(omittable: true)
 

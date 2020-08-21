@@ -28,11 +28,11 @@ module Qbo::Accounts
     attribute :"SubAccount",                      Types::Bool.meta(omittable: true)
 
     attribute :"FullyQualifiedName",              Types::Strict::String.meta(omittable: true)
-    attribute :"domain",                           Types::Strict::String.meta(omittable: true)
+    attribute :"domain",                          Types::Strict::String.meta(omittable: true)
     attribute :"Classification",                  Types::Strict::String.meta(omittable: true)
-    attribute :"CurrentBalanceWithSubAccounts",   Types::Decimal.meta(omittable: true)
-    attribute :"sparse",                           Types::Bool.meta(omittable: true)
-    attribute :"CurrentBalance",                  Types::Strict::Integer.meta(omittable: true)
+    attribute :"CurrentBalanceWithSubAccounts",   Types::Float.meta(omittable: true)
+    attribute :"sparse",                          Types::Bool.meta(omittable: true)
+    attribute :"CurrentBalance",                  Types::Float.meta(omittable: true)
 
   end
 end

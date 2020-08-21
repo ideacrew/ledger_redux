@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Qbo::Customers::CustomerContract do
 
-  let(:diaplay_name)    { { "DisplayName": "Bill's Windsurf Shop" } }
+  let(:required_params)    { { "DisplayName": "Bill's Windsurf Shop", "PrimaryTaxIdentifier": "011010110" } }
 
   let(:customer) { 
      {
@@ -46,7 +46,6 @@ RSpec.describe Qbo::Customers::CustomerContract do
       }
    }
 
-  let(:required_params)     { diaplay_name }
   let(:optional_params)     { customer }
   let(:all_params)          { required_params.merge(optional_params) }
 
@@ -62,7 +61,7 @@ RSpec.describe Qbo::Customers::CustomerContract do
 
     context "with optional parameters only" do
       it { expect(subject.call(optional_params).success?).to be_falsey }
-      it { expect(subject.call(optional_params).error?(:"DisplayName")).to be_truthy }
+      it { expect(subject.call(optional_params).error?(:"DisplayName" && :"PrimaryTaxIdentifier")).to be_truthy }
     end
   end
 
