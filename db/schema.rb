@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_211028) do
+ActiveRecord::Schema.define(version: 2020_08_21_010548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -505,6 +505,14 @@ ActiveRecord::Schema.define(version: 2020_08_20_211028) do
     t.index ["related_id", "related_type"], name: "index_fat_free_crm_versions_on_related_id_and_related_type"
     t.index ["transaction_id"], name: "index_fat_free_crm_versions_on_transaction_id"
     t.index ["whodunnit"], name: "index_fat_free_crm_versions_on_whodunnit"
+  end
+
+  create_table "qbo_customer_maps", force: :cascade do |t|
+    t.string "external_id"
+    t.string "quickbooks_customer_id"
+    t.string "fein"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "qbo_quickbooks_credentials", force: :cascade do |t|
