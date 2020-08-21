@@ -19,9 +19,12 @@ module Qbo::Customers
     def create(values)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
       if response.success?
-        Qbo::CustomerMap.create
-      response.to_result 
-
+        params = response.to_result.value!
+        Qbo::CustomerMap.create!(quickbooks_customer_id: params["Id"] , fein: values.to_h[:PrimaryTaxIdentifier])
+        response.to_result
+      else
+        response.to_result
+      end
     end
   end
 end

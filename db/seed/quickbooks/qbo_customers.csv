@@ -1,16 +1,16 @@
-DisplayName,CompanyName,Active,PrimaryTaxIdentifier
-Customer Test001,Test Company001,true,101010101
-Customer Test002,Test Company001,true,101010102
-Customer Test003,Test Company001,true,101010103
-Customer Test004,Test Company001,true,101010104
-Customer Test005,Test Company001,true,101010105
-Customer Test006,Test Company002,true,101010106
-Customer Test007,Test Company002,true,101010107
-Customer Test008,Test Company002,true,101010108
-Customer Test009,Test Company002,true,101010109
-Customer Test010,Test Company002,true,101010110
-Customer Test011,Test Company003,true,101010111
-Customer Test012,Test Company003,true,101010112
-Customer Test013,Test Company003,true,101010113
-Customer Test014,Test Company003,true,101010114
-Customer Test015,Test Company003,true,101010115
+DisplayName,CompanyName,Active,PrimaryTaxIdentifier,Taxable
+Customer Test001,Test Company001,true,101010101,false
+Customer Test002,Test Company001,true,101010102,false
+Customer Test003,Test Company001,true,101010103,false
+Customer Test004,Test Company001,true,101010104,false
+Customer Test005,Test Company001,true,101010105,false
+Customer Test006,Test Company002,true,101010106,false
+Customer Test007,Test Company002,true,101010107,false
+Customer Test008,Test Company002,true,101010108,false
+Customer Test009,Test Company002,true,101010109,false
+Customer Test010,Test Company002,true,101010110,false
+Customer Test011,Test Company003,true,101010111,false
+Customer Test012,Test Company003,true,101010112,false
+Customer Test013,Test Company003,true,101010113,false
+Customer Test014,Test Company003,true,101010114,false
+Customer Test015,Test Company003,true,101010115,false
