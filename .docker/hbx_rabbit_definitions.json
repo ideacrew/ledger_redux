@@ -258,6 +258,14 @@
         },
         {
             "arguments": {},
+            "destination": "HBX_ID.ENV_NAME.e.fanout.events",
+            "destination_type": "exchange",
+            "routing_key": "",
+            "source": "acapi.exchange.events.local",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
             "destination": "HBX_ID.ENV_NAME.e.topic.events",
             "destination_type": "exchange",
             "routing_key": "",
@@ -357,6 +365,14 @@
             "destination": "HBX_ID.ENV_NAME.q.hbx_enterprise.curam_application_completed",
             "destination_type": "queue",
             "routing_key": "info.application.curam.application_completed",
+            "source": "HBX_ID.ENV_NAME.e.topic.events",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
+            "destination": "HBX_ID.ENV_NAME.q.application.ledger_redux.inbound_events",
+            "destination_type": "queue",
+            "routing_key": "info.events.employer.benefit_coverage_initial_application_eligible",
             "source": "HBX_ID.ENV_NAME.e.topic.events",
             "vhost": "/"
         },
@@ -674,6 +690,15 @@
             "name": "HBX_ID.ENV_NAME.q.legacy_carrier_encoder-retry",
             "type": "topic",
             "vhost": "/"
+        },
+        {
+          "name": "acapi.exchange.events.local",
+          "vhost": "/",
+          "type": "fanout",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
         },
         {
             "arguments": {},
@@ -1084,6 +1109,13 @@
             "auto_delete": false,
             "durable": true,
             "name": "HBX_ID.ENV_NAME.q.application.enroll.inbound_events",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
+            "auto_delete": false,
+            "durable": true,
+            "name": "HBX_ID.ENV_NAME.q.application.ledger_redux.inbound_events",
             "vhost": "/"
         },
         {
