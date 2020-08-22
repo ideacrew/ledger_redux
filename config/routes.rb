@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :qbo_account_statuses, only: [] do
         collection do
+          get :account_status
           get :payment_history
           get :current_statement_service
         end

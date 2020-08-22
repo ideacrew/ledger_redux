@@ -12,7 +12,7 @@ module Qbo
     end
 
     def refresh_if_needed    
-        if self.updated_at < 55.minutes.ago
+        if self.updated_at > 55.minutes.ago
             refresh_token!
             self.save
         end
