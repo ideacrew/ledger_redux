@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Qbo::Vendors::VendorContract do
 
-  let(:id)    { { :"Id" => '2' } }
+  let(:display_name)    { { :"DisplayName" => "Books by Bessie"  } }
 
   let(:customer) { 
    {
@@ -14,7 +14,6 @@ RSpec.describe Qbo::Vendors::VendorContract do
       "Vendor1099": false, 
       "domain": "QBO", 
       "GivenName": "Bessie", 
-      "DisplayName": "Books by Bessie", 
       "BillAddr": {
         "City": "Palo Alto", 
         "Line1": "15 Main St.", 
@@ -23,7 +22,7 @@ RSpec.describe Qbo::Vendors::VendorContract do
         "Long": "-122.1391443", 
         "CountrySubDivisionCode": "CA", 
         "Id": "31"
-      }, 
+      },
       "SyncToken": "0", 
       "PrintOnCheckName": "Books by Bessie", 
       "FamilyName": "Williams", 
@@ -45,7 +44,7 @@ RSpec.describe Qbo::Vendors::VendorContract do
     }
   }
 
-  let(:required_params)     { id }
+  let(:required_params)     { display_name }
   let(:optional_params)     { customer }
   let(:all_params)          { required_params.merge(optional_params) }
 
@@ -61,7 +60,7 @@ RSpec.describe Qbo::Vendors::VendorContract do
 
     context "with optional parameters only" do
       it { expect(subject.call(optional_params).success?).to be_falsey }
-      it { expect(subject.call(optional_params).error?(:"Id")).to be_truthy }
+      it { expect(subject.call(optional_params).error?(:"DisplayName")).to be_truthy }
     end
   end
 

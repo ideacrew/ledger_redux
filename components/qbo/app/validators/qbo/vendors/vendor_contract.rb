@@ -6,11 +6,11 @@ module Qbo::Vendors
 
     json do
 
+      required(:"DisplayName").value(Qbo::Types::StrippedString)
       optional(:"GivenName").value(Qbo::Types::StrippedString)
-      optional(:"DisplayName").value(Qbo::Types::StrippedString)
       optional(:"FamilyName").value(Qbo::Types::StrippedString)
 
-      required(:Id).value(Qbo::Types::StrippedString)
+      optional(:Id).value(Qbo::Types::StrippedString)
       optional(:"SyncToken").value(Qbo::Types::StrippedString)
       optional(:"domain").value(Qbo::Types::StrippedString)
       optional(:"Vendor1099").value(:bool)

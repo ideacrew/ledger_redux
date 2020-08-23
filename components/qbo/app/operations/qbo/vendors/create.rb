@@ -1,6 +1,5 @@
 module Qbo::Vendors
   class Create 
-
     send(:include, Dry::Monads[:result, :do])
     send(:include, Dry::Monads[:try])
 
@@ -18,8 +17,8 @@ module Qbo::Vendors
     end
 
     def create(values)
-      response = Try { AwsConnection.create_user(values.to_h) }
-      response.to_result      
+      response = Try { Qbo::QuickbooksConnect.call.create(:vendor, payload: values.to_h) }
+      response.to_result
     end
   end
 end

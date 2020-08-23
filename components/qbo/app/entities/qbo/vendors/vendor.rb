@@ -2,10 +2,10 @@ module Qbo::Vendors
   class Vendor < Dry::Struct
 
     attribute :"GivenName",                      Types::Strict::String.meta(omittable: true)
-    attribute :"DisplayName",                    Types::Strict::String.meta(omittable: true)
+    attribute :"DisplayName",                    Types::Strict::String.meta(omittable: false)
     attribute :"FamilyName",                     Types::Strict::String.meta(omittable: true)
 
-    attribute :"Id",                             Types::Strict::String.meta(omittable: false)
+    attribute :"Id",                             Types::Strict::String.meta(omittable: true)
     attribute :"SyncToken",                      Types::Strict::String.meta(omittable: true)
     attribute :"domain",                         Types::Strict::String.meta(omittable: true)
     attribute :"Vendor1099",                     Types::Bool.meta(omittable: true)
