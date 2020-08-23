@@ -20,7 +20,11 @@ module Qbo::Customers
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
       if response.success?
         params = response.to_result.value!
-        Qbo::CustomerMap.create!(quickbooks_customer_id: params["Id"] , fein: values.to_h[:PrimaryTaxIdentifier])
+        Qbo::CustomerMap.create!(
+          quickbooks_customer_id: params["Id"],
+          fein: values.to_h[:PrimaryTaxIdentifier],
+          resource: "customer"
+        )
         response.to_result
       else
         response.to_result

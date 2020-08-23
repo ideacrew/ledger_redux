@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_182307) do
+ActiveRecord::Schema.define(version: 2020_08_22_182307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -536,6 +536,7 @@ ActiveRecord::Schema.define(version: 2020_08_21_182307) do
     t.string "fein"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "resource"
   end
 
   create_table "qbo_customers", force: :cascade do |t|
@@ -561,16 +562,6 @@ ActiveRecord::Schema.define(version: 2020_08_21_182307) do
     t.jsonb "PrimaryEmailAddr"
     t.jsonb "PrimaryPhone"
     t.jsonb "MetaData"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "qbo_quickbook_credentials", force: :cascade do |t|
-    t.string "realm_id"
-    t.string "client_id"
-    t.string "client_secret"
-    t.string "refresh_token"
-    t.string "access_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
