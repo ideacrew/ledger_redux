@@ -16,7 +16,7 @@ module Subscribers::Acapi
       params = yield transform_xml(payload)
       values = yield map_attributes(params)
       attributes = yield validate(values)
-      benefit_application = yield create(attributes)
+      benefit_application = yield create(attributes.to_h)
 
       Success(benefit_application)
     end
@@ -28,20 +28,21 @@ module Subscribers::Acapi
     private
 
     def transform_xml(payload)
-      Ox.load(payload, mode: :hash_no_attrs).deep_symbolize_keys!
+      result = Ox.load(payload, mode: :hash_no_attrs).deep_symbolize_keys!
+      Success(result)
     end
 
     def map_attributes(params)
-      result = params[:organization].tap do |attrs|
-        {
+      params[:organization].tap do |attrs|
+        @result = {
           hbx_id: attrs[:id][:id],
           fein: attrs[:fein],
           legal_name: attrs[:name]
         }
       end
 
-      result[:payload] = params
-      Success(result)
+      @result[:payload] = params
+      Success(@result)
     end
 
     def validate(values)
@@ -49,7 +50,7 @@ module Subscribers::Acapi
     end
 
     def create(attributes)
-      Try { Commands::BenefitApplication::Create.call(hbx_id: hbx_id, fein: fein, legal_name: legal_name, payload: payload) }.to_result
+      Try { Commands::BenefitApplication::Create.call(hbx_id: attributes[:hbx_id], fein: attributes[:fein], legal_name: attributes[:legal_name], payload: attributes[:payload]) }.to_result
     end
   end
 end

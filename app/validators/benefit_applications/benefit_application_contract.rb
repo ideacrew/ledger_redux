@@ -17,7 +17,7 @@ module BenefitApplications
       required(:hbx_id).filled(:string)
       required(:fein).filled(:string)
       required(:legal_name).filled(:string)
-      required(:payload).filled(:string)
+      required(:payload).filled(:hash)
     end
   end
 
