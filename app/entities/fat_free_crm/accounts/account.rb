@@ -30,7 +30,7 @@ module FatFreeCrm::Accounts
     attribute :division_name,       Types::String.meta(omittable: true)   # HQ, Region, Agency, Department
     attribute :division_kind,       Types::String.meta(omittable: true)   # HQ, Region, Agency, Department
 
-    attribute :addresses,           Types::Array.of(Locations::Address).meta(omittable: true)
+    attribute :addresses,           Types::Array.of(FatFreeCrm::Locations::Address).meta(omittable: true)
     attribute :email,               LedgerRedux::Types::Email.meta(omittable: true)
     attribute :phone,               LedgerRedux::Types::PhoneNumber.meta(omittable: true)
     attribute :fax,                 LedgerRedux::Types::PhoneNumber.meta(omittable: true)

@@ -30,6 +30,32 @@ module LedgerRedux
 
     AccountKind = Types::Coercible::Symbol.enum(:accounts_receivable)
 
+    ConsentKind         = Types::Coercible::Symbol.enum(:text_message, :email_message, :electronic_notices, :lab_results)
+    GenderKind          = Types::Coercible::Symbol.enum(:male, :female, :other, :unknown)
+
+    YesNoUnknownKind    = Types::Coercible::Symbol.default(:no).enum(:yes, :no, :unknown, :refused)
+    YesNoPartialKind    = Types::Coercible::Symbol.default(:no).enum(:yes, :no, :partial, :refused)
+    YesNoKind           = Types::Coercible::Symbol.default(:no).enum(:yes, :no)
+    AttestationKind     = Types::Coercible::Symbol.enum(:yes_no)
+    GuideKind           = Types::Coercible::Symbol.enum(:internal, :external)
+
+    InjuryOrIllnessKind = Types::Coercible::Symbol.default(:other_illness).enum(:injury, :skin_disorder, :respiratory_condition, :poisoning, :hearing_loss, :other_illness)
+    CaseOutcomeKind     = Types::Coercible::Symbol.enum(:death, :away_from_work, :job_transfer_or_restriction, :other_recordable_cases)
+
+    EmploymentKind            = Types::Coercible::Symbol.enum(:employed, :unemployed, :unemployed_covid, :retired, :unable_to_work, :student, :minor, :unknown)
+    ContactSettingKind        = Types::Coercible::Symbol.enum(:home, :school, :dahy_care, :workplace, :place_of_worship, :shelter, :health_medical_care, :travel_or_transit, :retail)
+    HealthCareSettingKind     = Types::Coercible::Symbol.enum(:hospital, :ambulatory_care, :first_responder, :urgent_care, :long_term_care, :hospice)
+    PreExistingConditionKind  = Types::Coercible::Symbol.enum(:chronic_lung_disease, :diabetes, :severe_obesity, :cvd, :chronic_renal_disease, :chronic_liver_disease, :immunocompromised, :pregnant)
+    CongregateSettingKind     = Types::Coercible::Symbol.enum(:corrections, :dorm, :group_home, :multi_family_hh, :multi_generational_hh)
+    LocationKind              = Types::Coercible::Symbol.enum(:congregate_settings, :correctional_facilities, :workplaces, :health_care, :schools_and_childcare, :homeless_shelters)
+
+    HighRiskOccupationKind    = Types::Coercible::Symbol.enum(:first_responder, :health_care_worker, :law_enforcement)
+
+    SymptomKind               = Types::Coercible::Symbol.enum(:fever, :cough, :shortness_of_breath, :diarrhea, :headache,
+                                                              :muscle_ache, :chills, :sore_throat, :vomiting, :abdominal_pain,
+                                                              :loss_of_taste, :loss_of_smell, :nasal_congestion, :malaise, :fatigue)
+
+    ContactAddressKind  = Types::Coercible::String.default("Business").enum("Billing", "Shipping", "Work", "Home", 'Business')
     # E.164 Standard
     PhoneNumber       = Types::String.constrained(format: /^\+(?:[0-9] ?){6,14}[0-9]$/)
     # PhoneNumber       = Types::String.constrained(format: /^\+\d{1,3}\s\d{1,14}(\s\d{1,13})$/)

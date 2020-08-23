@@ -17,7 +17,7 @@ module Qbo::Customers
     attribute :"BillWithParent",                 Types::Bool.meta(omittable: true)
     attribute :"sparse",                         Types::Bool.meta(omittable: true)
 
-    attribute :"BillAddr",                       Locations::Address.optional.meta(omittable: true)
+    attribute :"BillAddr",                       Qbo::Locations::Address.optional.meta(omittable: true)
 
     attribute :"PrimaryEmailAddr", Dry::Struct.meta(omittable: true) do
       attribute :"Address",                      Types::Strict::String.meta(omittable: true)

@@ -12,7 +12,7 @@ module Qbo::Vendors
 
     attribute :"AcctNum",                        Types::Strict::String.meta(omittable: true)
     attribute :"CompanyName",                    Types::Strict::String.meta(omittable: true)
-    attribute :"BillAddr",                       Locations::Address.optional.meta(omittable: true)
+    attribute :"BillAddr",                       Qbo::Locations::Address.optional.meta(omittable: true)
     
     attribute :"WebAddr", Dry::Struct.meta(omittable: true) do
       attribute :"URI",                          Types::Strict::String.meta(omittable: true)

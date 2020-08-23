@@ -14,9 +14,9 @@ module FatFreeCrm::Contacts
       optional(:born_on).filled(:date)
       optional(:hired_on).filled(:date)
       optional(:ssn).maybe(:string)
-      optional(:gender).filled(CovidMost::Types::GenderKind)
+      optional(:gender).filled(LedgerRedux::Types::GenderKind)
       optional(:preferred_language).maybe(:string)
-      optional(:used_interpreter).filled(CovidMost::Types::YesNoUnknownKind)
+      optional(:used_interpreter).filled(LedgerRedux::Types::YesNoUnknownKind)
       optional(:category).filled(:string)
 
       optional(:addresses).array(:hash)
@@ -28,10 +28,10 @@ module FatFreeCrm::Contacts
       optional(:source).maybe(:string)    
       optional(:reports_to).maybe(:integer)
 
-      optional(:email).maybe(CovidMost::Types::Email)
-      optional(:alt_email).maybe(CovidMost::Types::Email)
-      optional(:phone).maybe(CovidMost::Types::PhoneNumber) 
-      optional(:mobile).maybe(CovidMost::Types::PhoneNumber)
+      optional(:email).maybe(LedgerRedux::Types::Email)
+      optional(:alt_email).maybe(LedgerRedux::Types::Email)
+      optional(:phone).maybe(LedgerRedux::Types::PhoneNumber) 
+      optional(:mobile).maybe(LedgerRedux::Types::PhoneNumber)
 
       optional(:linkedin).maybe(:string)
       optional(:facebook).maybe(:string)
