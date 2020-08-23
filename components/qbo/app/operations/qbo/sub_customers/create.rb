@@ -24,6 +24,15 @@ module Qbo::SubCustomers
 
     def create(values)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
+
+      if response.success?
+        params = response.to_result.value!
+        Qbo::CustomerMap.create!(
+          quickbooks_customer_id: params["Id"],
+          # external_id: <HBX_ID OF EMPLOYEE>,
+          resource: "sub-customer"
+        )
+      end
       response.to_result
     end
   end
