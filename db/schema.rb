@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_182307) do
+ActiveRecord::Schema.define(version: 2020_08_24_150524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -505,6 +505,25 @@ ActiveRecord::Schema.define(version: 2020_08_22_182307) do
     t.index ["related_id", "related_type"], name: "index_fat_free_crm_versions_on_related_id_and_related_type"
     t.index ["transaction_id"], name: "index_fat_free_crm_versions_on_transaction_id"
     t.index ["whodunnit"], name: "index_fat_free_crm_versions_on_whodunnit"
+  end
+
+  create_table "member_events", force: :cascade do |t|
+    t.string "type", null: false
+    t.text "data", null: false
+    t.text "metadata", null: false
+    t.datetime "created_at", null: false
+    t.integer "member_id"
+    t.index ["member_id"], name: "index_member_events_on_member_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.date "effective_date"
+    t.string "coverage_kind"
+    t.string "subscriber_id"
+    t.string "total_premium"
+    t.text "payload"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "qbo_accounts", force: :cascade do |t|
