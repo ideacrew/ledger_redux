@@ -402,6 +402,30 @@
         },
         {
             "arguments": {},
+            "destination": "HBX_ID.ENV_NAME.q.application.ledger_redux.inbound_events",
+            "destination_type": "queue",
+            "routing_key": "error.events.employer.binder_enrollments_transmission_authorized.invalid_effective_on_date",
+            "source": "HBX_ID.ENV_NAME.e.topic.events",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
+            "destination": "HBX_ID.ENV_NAME.q.application.ledger_redux.inbound_events",
+            "destination_type": "queue",
+            "routing_key": "error.events.employer.binder_enrollments_transmission_authorized.employer_not_found",
+            "source": "HBX_ID.ENV_NAME.e.topic.events",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
+            "destination": "HBX_ID.ENV_NAME.q.application.ledger_redux.inbound_events",
+            "destination_type": "queue",
+            "routing_key": "error.events.employer.binder_enrollments_transmission_authorized.unknown_error",
+            "source": "HBX_ID.ENV_NAME.e.topic.events",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
             "destination": "HBX_ID.ENV_NAME.q.hbx_enterprise.oim_account_creation",
             "destination_type": "queue",
             "routing_key": "info.events.account_management.creation_requested",
