@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_182307) do
+ActiveRecord::Schema.define(version: 2020_08_23_182307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -562,6 +562,18 @@ ActiveRecord::Schema.define(version: 2020_08_22_182307) do
     t.jsonb "PrimaryEmailAddr"
     t.jsonb "PrimaryPhone"
     t.jsonb "MetaData"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "qbo_invoice_staging", force: :cascade do |t|
+    t.string "sub_customer_last_name"
+    t.string "sub_customer_external_id"
+    t.string "customer_external_id"
+    t.string "plan_name"
+    t.string "coverage_type"
+    t.float "premium_amount"
+    t.date "benefit_begin_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
