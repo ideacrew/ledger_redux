@@ -380,6 +380,22 @@
             "arguments": {},
             "destination": "HBX_ID.ENV_NAME.q.application.enroll.inbound_events",
             "destination_type": "queue",
+            "routing_key": "info.events.employer.binder_enrollments_transmission_authorized",
+            "source": "HBX_ID.ENV_NAME.e.topic.events",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
+            "destination": "HBX_ID.ENV_NAME.q.application.ledger_redux.inbound_events",
+            "destination_type": "queue",
+            "routing_key": "info.events.hbx_enrollment.coverage_selected",
+            "source": "HBX_ID.ENV_NAME.e.topic.events",
+            "vhost": "/"
+        },
+        {
+            "arguments": {},
+            "destination": "HBX_ID.ENV_NAME.q.application.enroll.inbound_events",
+            "destination_type": "queue",
             "routing_key": "info.events.#",
             "source": "HBX_ID.ENV_NAME.e.topic.events",
             "vhost": "/"
