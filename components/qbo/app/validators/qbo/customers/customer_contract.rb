@@ -8,6 +8,7 @@ module Qbo::Customers
       
       required(:"DisplayName").value(Qbo::Types::StrippedString)
       required(:"PrimaryTaxIdentifier").value(Qbo::Types::StrippedString)
+      required(:"ExternalId").value(Qbo::Types::StrippedString)
       optional(:"GivenName").value(Qbo::Types::StrippedString)
       optional(:"FullyQualifiedName").value(Qbo::Types::StrippedString)
       optional(:"CompanyName").value(Qbo::Types::StrippedString)
