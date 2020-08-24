@@ -13,6 +13,7 @@ module Subscribers::Acapi
     # @param [String] payload
     # @return [Dry::Monad::Result<ResourceRegistry::Feature>] monad_result
     def call(event_name, e_start, e_end, msg_id, payload)
+      Rails.logger.info {"*** Processing benefit_coverage_initial_application_eligible payload -- #{payload}"}
       params = yield transform_xml(payload)
       values = yield map_attributes(params)
       attributes = yield validate(values)
@@ -50,6 +51,7 @@ module Subscribers::Acapi
     end
 
     def create(attributes)
+      Rails.logger.info {"*** Processing Benefit Application Command -- #{attributes}"}
       Try { Commands::BenefitApplication::Create.call(hbx_id: attributes[:hbx_id], fein: attributes[:fein], legal_name: attributes[:legal_name], payload: attributes[:payload]) }.to_result
     end
   end
