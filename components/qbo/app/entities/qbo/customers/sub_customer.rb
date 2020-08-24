@@ -8,7 +8,8 @@ module Qbo::Customers
     attribute :"FullyQualifiedName",             Types::Strict::String.meta(omittable: true)
     attribute :"CompanyName",                    Types::Strict::String.meta(omittable: true)
     attribute :"FamilyName",                     Types::Strict::String.meta(omittable: true)
-    attribute :"PrimaryTaxIdentifier",           Types::Strict::String.meta(omittable: false)
+    attribute :"PrimaryTaxIdentifier",           Types::Strict::String.meta(omittable: true)
+    attribute :"ExternalId",                     Types::Strict::String.meta(omittable: false)
     attribute :"ParentRef",                      Types::Strict::String.meta(omittable: false)
 
     attribute :"Id",                             Types::Strict::String.meta(omittable: true)

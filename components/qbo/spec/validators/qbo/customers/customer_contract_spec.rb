@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Qbo::Customers::CustomerContract do
 
-  let(:required_params)    { { "DisplayName": "Bill's Windsurf Shop", "PrimaryTaxIdentifier": "011010110" } }
+  let(:required_params)    { { "DisplayName": "Bill's Windsurf Shop", "PrimaryTaxIdentifier": "011010110", "ExternalId": "12345678" } }
 
   let(:customer) { 
      {
