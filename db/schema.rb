@@ -586,16 +586,6 @@ ActiveRecord::Schema.define(version: 2020_08_24_140409) do
     t.string "ExternalId"
   end
 
-  create_table "qbo_quickbook_credentials", force: :cascade do |t|
-    t.string "realm_id"
-    t.string "client_id"
-    t.string "client_secret"
-    t.string "refresh_token"
-    t.string "access_token"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "qbo_invoice_staging", force: :cascade do |t|
     t.string "sub_customer_last_name"
     t.string "sub_customer_external_id"
@@ -604,6 +594,16 @@ ActiveRecord::Schema.define(version: 2020_08_24_140409) do
     t.string "coverage_type"
     t.float "premium_amount"
     t.date "benefit_begin_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "qbo_quickbook_credentials", force: :cascade do |t|
+    t.string "realm_id"
+    t.string "client_id"
+    t.string "client_secret"
+    t.string "refresh_token"
+    t.string "access_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
