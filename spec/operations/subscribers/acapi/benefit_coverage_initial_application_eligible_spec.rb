@@ -2,17 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Subscribers::Acapi::BenefitCoverageInitialApplicationEligible do
 
-  let(:fein)          { "587458514" }
-  let(:updated_fein)  { "888888888" }
-  let(:legal_name)    { "ACME Widgets, Inc" }
-  let(:hbx_id)        { "202001" }
-
-  let(:easter_egg)  { "a special placeholder for future payloads" }
-  let(:christmas)  { "yes yes" }
-
-  let(:metadata)    { { easter_egg: easter_egg } }
-  let(:payload)    { {christmas: christmas} }
-
   let(:event_name) {nil}
   let(:e_start) {nil}
   let(:e_end) {nil}
