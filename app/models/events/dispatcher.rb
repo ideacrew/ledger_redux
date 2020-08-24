@@ -5,4 +5,6 @@ class Events::Dispatcher < Lib::EventDispatcher
   on Events::BenefitApplication::Created, async: Reactors::BenefitApplication::SendWelcomeMessage
   on Events::BenefitApplication::Created, trigger: Reactors::BenefitApplication::QboCreateCustomer
   on Events::BenefitApplication::Created, trigger: Reactors::BenefitApplication::FfcrmCreateAccount
+  on Events::BenefitApplication::Created, trigger: Reactors::Member::QboCreateSubCustomer
+  on Events::BenefitApplication::Created, trigger: Reactors::Member::QboCreateInvoice
 end
