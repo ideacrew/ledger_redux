@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 RSpec.describe Subscribers::Acapi::BenefitCoverageInitialApplicationEligible do
 
