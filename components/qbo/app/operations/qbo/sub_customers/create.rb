@@ -22,18 +22,30 @@ module Qbo::SubCustomers
       Try { Qbo::Customers::CustomerContract.new.call(params) }
     end
 
+    def create_customer_map(params)
+      Qbo::CustomerMap.create!(
+        quickbooks_customer_id: params["Id"],
+        external_id: params["PrimaryTaxIdentifier"],
+        resource: "sub_customer"
+      )
+    end
+
+    def create_sub_customer(params)
+      Qbo::SubCustomer.create!(params)
+    end
+
     def create(values)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
 
       if response.success?
-        params = response.to_result.value!
-        Qbo::CustomerMap.create!(
-          quickbooks_customer_id: params["Id"],
-          # external_id: <HBX_ID OF EMPLOYEE>,
-          resource: "sub-customer"
-        )
+        params = response.to_result.value!.merge!({"PrimaryTaxIdentifier": values.to_h[:PrimaryTaxIdentifier]})
+        create_customer_map(params)
+        create_sub_customer(params)
+
+        response.to_result
+      else
+        response.to_result
       end
-      response.to_result
     end
   end
 end

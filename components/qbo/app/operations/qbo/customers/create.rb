@@ -16,15 +16,25 @@ module Qbo::Customers
       Try { Qbo::Customers::CustomerContract.new.call(params) }
     end
 
+    def create_customer_map(params)
+      Qbo::CustomerMap.create!(
+        quickbooks_customer_id: params["Id"],
+        fein: params["PrimaryTaxIdentifier"],
+        resource: "customer"
+      )
+    end
+
+    def create_customer(params)
+      Qbo::Customer.create!(params)
+    end
+
     def create(values)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
       if response.success?
-        params = response.to_result.value!
-        Qbo::CustomerMap.create!(
-          quickbooks_customer_id: params["Id"],
-          fein: values.to_h[:PrimaryTaxIdentifier],
-          resource: "customer"
-        )
+        params = response.to_result.value!.merge!({"PrimaryTaxIdentifier": values.to_h[:PrimaryTaxIdentifier]})
+        create_customer_map(params)
+        create_customer(params)
+
         response.to_result
       else
         response.to_result

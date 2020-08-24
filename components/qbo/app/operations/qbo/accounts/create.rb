@@ -18,7 +18,14 @@ module Qbo::Accounts
 
     def create(values)
       response = Try { Qbo::QuickbooksConnect.call.create(:account, payload: values.to_h) }
-      response.to_result      
+      if response.success?
+        params = response.to_result.value!
+        Qbo::Account.create!(params)
+
+        response.to_result
+      else
+        response.to_result
+      end
     end
   end
 end
