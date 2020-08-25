@@ -15,22 +15,20 @@ module Qbo::SubCustomers
     private
 
     def serialize(payload)
-      member = payload[:enrollment_event][:event][:body][:enrollment_event_body][:affected_members][:affected_member][:member]
-      employer = payload[:enrollment_event][:event][:body][:enrollment_event_body][:enrollment][:policy][:enrollment][:shop_market][:employer_link]
       params = {
-        "ExternalId": member[:primary_family_id][:id],
-        "PrimaryTaxIdentifier": employer[:fein],
-        "DisplayName": "#{member[:person][:person_name][:person_given_name]} #{member[:person][:person_name][:person_surname]} (#{member[:primary_family_id][:id]})",
-        "GivenName": member[:person][:person_name][:person_given_name],
-        "FamilyName": member[:person][:person_name][:person_surname],
-        "CompanyName": employer[:name],
+        "ExternalId": payload[:hbx_id],
+        "DisplayName": "#{payload[:first_name]} #{payload[:last_name]} (#{payload[:hbx_id]})",
+        "GivenName": payload[:first_name],
+        "FamilyName": payload[:last_name],
+        "CompanyName": payload[:employer_legal_name],
+        "PrimaryTaxIdentifier": payload[:fein],
 
-        "BillAddr": { "Line1": "#{member[:person][:addresses][:address][:address_line_1]} #{member[:person][:addresses][:address][:address_line_2]}",
-                      "City": member[:person][:addresses][:address][:location_city_name],
-                      "PostalCode": member[:person][:addresses][:address][:postal_code],
+        "BillAddr": { "Line1": "#{payload[:address][:address_1]} #{payload[:address][:address_2]}",
+                      "City": payload[:address][:city],
+                      "PostalCode": payload[:address][:zip],
                     },
-        "PrimaryEmailAddr": {"Address": member[:person][:emails][:email].first[:email_address] },
-        "PrimaryPhone": {"FreeFormNumber":  member[:person][:phones][:phone][:full_phone_number] },
+        "PrimaryEmailAddr": {"Address": payload[:email] },
+        "PrimaryPhone": {"FreeFormNumber": payload[:phone] },
         "Taxable": false
       }
 
