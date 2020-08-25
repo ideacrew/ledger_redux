@@ -5,11 +5,17 @@ module FatFreeCrm::Contacts
 
     params do
 
-      optional(:id).filled(:integer)
-      optional(:account_id).filled(:integer)
+      required(:first_name).filled(:string)
+      required(:last_name).filled(:string)
+      required(:hbx_id).filled(:string)
 
-      optional(:first_name).filled(:string)
-      optional(:last_name).filled(:string)
+      optional(:email).maybe(LedgerRedux::Types::Email)
+      optional(:alt_email).maybe(LedgerRedux::Types::Email)
+      optional(:phone).maybe(:string) 
+      optional(:mobile).maybe(LedgerRedux::Types::PhoneNumber)
+      
+      optional(:addresses).array(:hash)
+
       optional(:preferred_name).filled(:string)
       optional(:born_on).filled(:date)
       optional(:hired_on).filled(:date)
@@ -19,7 +25,6 @@ module FatFreeCrm::Contacts
       optional(:used_interpreter).filled(LedgerRedux::Types::YesNoUnknownKind)
       optional(:category).filled(:string)
 
-      optional(:addresses).array(:hash)
       optional(:outreach_priority).maybe(:integer)
 
       optional(:access).maybe(:string)    
@@ -27,11 +32,6 @@ module FatFreeCrm::Contacts
       optional(:department).maybe(:string)
       optional(:source).maybe(:string)    
       optional(:reports_to).maybe(:integer)
-
-      optional(:email).maybe(LedgerRedux::Types::Email)
-      optional(:alt_email).maybe(LedgerRedux::Types::Email)
-      optional(:phone).maybe(LedgerRedux::Types::PhoneNumber) 
-      optional(:mobile).maybe(LedgerRedux::Types::PhoneNumber)
 
       optional(:linkedin).maybe(:string)
       optional(:facebook).maybe(:string)

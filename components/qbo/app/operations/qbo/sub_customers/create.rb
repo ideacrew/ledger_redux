@@ -52,7 +52,7 @@ module Qbo::SubCustomers
     end
 
     def create_sub_customer(params)
-      Qbo::SubCustomer.create!(params)
+      Qbo::SubCustomer.create!(params.except!("CurrencyRef"))
     end
 
     def create(values, payload)

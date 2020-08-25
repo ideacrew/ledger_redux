@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_140409) do
+ActiveRecord::Schema.define(version: 2020_08_25_030238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 2020_08_24_140409) do
     t.text "subscribed_users"
     t.integer "contacts_count", default: 0
     t.integer "opportunities_count", default: 0
+    t.string "hbx_id"
+    t.string "fein"
     t.index ["assigned_to"], name: "index_fat_free_crm_accounts_on_assigned_to"
     t.index ["user_id", "name", "deleted_at"], name: "index_fat_free_crm_accounts_on_user_id_and_name_and_deleted_at", unique: true
   end
@@ -219,6 +221,9 @@ ActiveRecord::Schema.define(version: 2020_08_24_140409) do
     t.integer "outreach_priority"
     t.string "category"
     t.string "used_interpreter"
+    t.string "hbx_id"
+    t.date "hired_on"
+    t.string "ssn"
     t.index ["assigned_to"], name: "index_fat_free_crm_contacts_on_assigned_to"
     t.index ["user_id", "last_name", "deleted_at"], name: "id_last_name_deleted", unique: true
   end
@@ -596,6 +601,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_140409) do
     t.date "benefit_begin_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "qbo_item_id"
   end
 
   create_table "qbo_quickbook_credentials", force: :cascade do |t|
