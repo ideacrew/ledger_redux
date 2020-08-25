@@ -38,7 +38,9 @@ module Qbo
       }
       if raw_response.body[:access_token]
           self.access_token = raw_response.body[:access_token]
-          self.save
+          self.refresh_token = raw_response.body[:refresh_token]
+          self.save!
+          self.reload
       end
       self.access_token
     end
