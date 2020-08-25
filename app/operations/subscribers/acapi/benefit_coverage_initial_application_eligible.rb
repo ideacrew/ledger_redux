@@ -14,7 +14,7 @@ module Subscribers::Acapi
     # @return [Dry::Monad::Result<ResourceRegistry::Feature>] monad_result
     def call(event_name, e_start, e_end, msg_id, payload)
       Rails.logger.info {"*** Processing benefit_coverage_initial_application_eligible payload -- #{payload}"}
-      values = yield map_attributes(HashWithIndifferentAccess.new(payload))
+      values = yield map_attributes(payload.deep_symbolize_keys!)
       attributes = yield validate(values)
       benefit_application = yield create(attributes.to_h)
 
