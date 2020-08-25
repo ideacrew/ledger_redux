@@ -17,7 +17,7 @@ module Qbo::SubCustomers
     def serialize(payload)
       params = {
         "ExternalId": payload[:hbx_id],
-        "DisplayName": "#{member[:person][:person_name][:person_given_name]} #{member[:person][:person_name][:person_surname]} (#{member[:primary_family_id][:id]})",
+        "DisplayName": "#{payload[:first_name]} #{payload[:last_name]} (#{payload[:hbx_id]})",
         "GivenName": payload[:first_name],
         "FamilyName": payload[:last_name],
         "CompanyName": payload[:employer_legal_name],
