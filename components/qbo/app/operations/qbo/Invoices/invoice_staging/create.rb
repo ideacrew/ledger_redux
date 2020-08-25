@@ -16,16 +16,14 @@ module Qbo::Invoices
       private
 
       def serialize(payload)
-        policy = payload[:enrollment_event][:event][:body][:enrollment_event_body][:enrollment][:policy]
-
         params = {
-          sub_customer_last_name: policy[:enrollees][:enrollee][:member][:person][:person_name][:person_surname],
-          sub_customer_external_id: policy[:enrollees][:enrollee][:member][:person][:id][:id].split("#").last,
-          customer_external_id: policy[:enrollment][:shop_market][:employer_link][:id][:id].split("#").last,
-          plan_name: policy[:enrollment][:plan][:name] ,
-          coverage_type: policy[:enrollment][:plan][:coverage_type].split("#").last,
-          premium_amount: policy[:enrollment][:premium_total_amount].to_f,
-          benefit_begin_date: policy[:enrollees][:enrollee][:benefit][:begin_date].to_date,
+          sub_customer_last_name: payload[:last_name],
+          sub_customer_external_id: payload[:hbx_id],
+          customer_external_id: payload[:employer_hbx_id],
+          plan_name: payload[:plan_name],
+          coverage_type: payload[:coverage_type],
+          premium_amount: payload[:premium_amount].to_f,
+          benefit_begin_date: payload[:benefit_begin_date].to_date,
         }
 
         Success(params)
