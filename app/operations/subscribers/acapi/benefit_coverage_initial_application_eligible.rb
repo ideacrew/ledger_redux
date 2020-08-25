@@ -14,8 +14,7 @@ module Subscribers::Acapi
     # @return [Dry::Monad::Result<ResourceRegistry::Feature>] monad_result
     def call(event_name, e_start, e_end, msg_id, payload)
       Rails.logger.info {"*** Processing benefit_coverage_initial_application_eligible payload -- #{payload}"}
-      params = yield transform_xml(payload)
-      values = yield map_attributes(params)
+      values = yield map_attributes(payload)
       attributes = yield validate(values)
       benefit_application = yield create(attributes.to_h)
 
@@ -33,17 +32,15 @@ module Subscribers::Acapi
       Success(result)
     end
 
-    def map_attributes(params)
-      params[:organization].tap do |attrs|
-        @result = {
-          hbx_id: attrs[:id][:id],
-          fein: attrs[:fein],
-          legal_name: attrs[:name]
-        }
-      end
+    def map_attributes(payload)
+      result = {
+        hbx_id: payload[:hbx_id],
+        fein: payload[:fein],
+        legal_name: payload[:employer_legal_name],
+        payload: payload
+      }
 
-      @result[:payload] = params
-      Success(@result)
+      Success(result)
     end
 
     def validate(values)
