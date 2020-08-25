@@ -40,7 +40,7 @@ module Qbo::Customers
       Qbo::CustomerMap.create!(
         quickbooks_customer_id: params["Id"],
         fein: params["PrimaryTaxIdentifier"],
-        external_id: params["ExternalId"]
+        external_id: params["ExternalId"],
         resource: "customer"
       )
     end
