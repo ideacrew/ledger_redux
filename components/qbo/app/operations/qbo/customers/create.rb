@@ -6,7 +6,7 @@ module Qbo::Customers
     def call(payload)
       params    = yield serialize(payload)
       values    = yield validate(params)
-      customer  = yield create(values)
+      customer  = yield create(values, payload)
 
       Success(customer)
     end
@@ -16,7 +16,6 @@ module Qbo::Customers
     def serialize(payload)
 
       params = {
-        "ExternalId": payload[:hbx_id],
         "PrimaryTaxIdentifier": payload[:fein],
         "DisplayName": "#{payload[:employer_legal_name]} (#{payload[:hbx_id]})",
 
@@ -46,13 +45,13 @@ module Qbo::Customers
     end
 
     def create_customer(params)
-      Qbo::Customer.create!(params)
+      Qbo::Customer.create!(params.except!("CurrencyRef"))
     end
 
     def create(values)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
       if response.success?
-        params = response.to_result.value!.merge!({"PrimaryTaxIdentifier": values.to_h[:PrimaryTaxIdentifier], "ExternalId": values.to_h[:ExternalId] })
+        params = response.to_result.value!.merge!({"PrimaryTaxIdentifier": values.to_h[:PrimaryTaxIdentifier], "ExternalId": payload[:hbx_id] })
         create_customer_map(params)
         create_customer(params)
 

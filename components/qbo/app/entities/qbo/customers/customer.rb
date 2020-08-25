@@ -9,7 +9,7 @@ module Qbo::Customers
     attribute :"CompanyName",                    Types::Strict::String.meta(omittable: true)
     attribute :"FamilyName",                     Types::Strict::String.meta(omittable: true)
     attribute :"PrimaryTaxIdentifier",           Types::Strict::String.meta(omittable: false)
-    attribute :"ExternalId",                     Types::Strict::String.meta(omittable: false)
+    attribute :"ExternalId",                     Types::Strict::String.meta(omittable: true)
 
     attribute :"Id",                             Types::Strict::String.meta(omittable: true)
     attribute :"SyncToken",                      Types::Strict::String.meta(omittable: true)

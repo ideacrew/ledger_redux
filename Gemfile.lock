@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/ideacrew/fat_free_crm.git
-  revision: b435537ba1d02ba9075dca2ca10ae39676371b24
+  revision: a4d30212b50a9d43d2eb59530a40380c663f4864
   branch: ledger
   specs:
     fat_free_crm (0.19.0)
