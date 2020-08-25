@@ -14,8 +14,8 @@ module Subscribers::Acapi
     # @return [Dry::Monad::Result<ResourceRegistry::Feature>] monad_result
     def call(event_name, e_start, e_end, msg_id, payload)
       Rails.logger.info {"*** Processing coverage_selected payload -- #{payload}"}
-      params = yield transform_xml(payload)
-      values = yield map_attributes(params)
+      # params = yield transform_xml(payload)
+      values = yield map_attributes(payload)
       attributes = yield validate(values)
       member = yield create(attributes.to_h)
 
@@ -33,20 +33,15 @@ module Subscribers::Acapi
       Success(result)
     end
 
-    def map_attributes(params)
-      body = params[:enrollment_event][:event][:body][:enrollment_event_body]
+    def map_attributes(payload)
+      result = {
+        effective_date: payload[:effective_on].to_date,
+        total_premium: payload[:premium_amount].to_s,
+        subscriber_id: payload[:hbx_id],
+        payload: payload
+      } 
 
-      body[:affected_members][:affected_member].tap do |attrs|
-        @result = {
-          effective_date: attrs[:benefit][:begin_date].to_date,
-          total_premium: attrs[:benefit][:premium_amount],
-          subscriber_id: attrs[:member][:id][:id]
-        }
-      end
-
-      @result[:coverage_kind] = body[:enrollment][:policy][:enrollment][:plan][:coverage_type]
-      @result[:payload] = params
-      Success(@result)
+      Success(result)
     end
 
     def validate(values)
