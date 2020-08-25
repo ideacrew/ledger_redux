@@ -44,5 +44,9 @@ module Qbo
       end
       self.access_token
     end
+
+    def test
+      connect.get(:account, 1)
+    end
   end
 end
