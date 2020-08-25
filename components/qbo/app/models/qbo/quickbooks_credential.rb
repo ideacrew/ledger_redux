@@ -11,6 +11,10 @@ module Qbo
       connect
     end
 
+    def hello
+      connect.get(:account, 1)
+    end
+
     def refresh_if_needed 
       if self.updated_at < 55.minutes.ago
           refresh_token!
@@ -43,10 +47,6 @@ module Qbo
           self.reload
       end
       self.access_token
-    end
-
-    def test
-      connect.get(:account, 1)
     end
   end
 end
