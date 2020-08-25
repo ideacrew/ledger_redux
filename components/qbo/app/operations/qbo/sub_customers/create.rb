@@ -7,7 +7,7 @@ module Qbo::SubCustomers
       params       = yield serialize(payload)
       parent_ref   = yield get_parent_customer(params)
       values       = yield validate(params, parent_ref)
-      sub_customer = yield create(values)
+      sub_customer = yield create(values, payload)
 
       Success(sub_customer)
     end
@@ -16,7 +16,6 @@ module Qbo::SubCustomers
 
     def serialize(payload)
       params = {
-        "ExternalId": payload[:hbx_id],
         "DisplayName": "#{payload[:first_name]} #{payload[:last_name]} (#{payload[:hbx_id]})",
         "GivenName": payload[:first_name],
         "FamilyName": payload[:last_name],
@@ -47,7 +46,7 @@ module Qbo::SubCustomers
     def create_customer_map(params)
       Qbo::CustomerMap.create!(
         quickbooks_customer_id: params["Id"],
-        external_id: params["PrimaryTaxIdentifier"],
+        external_id: params["ExternalId"],
         resource: "sub_customer"
       )
     end
@@ -56,11 +55,11 @@ module Qbo::SubCustomers
       Qbo::SubCustomer.create!(params)
     end
 
-    def create(values)
+    def create(values, payload)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
 
       if response.success?
-        params = response.to_result.value!.merge!({"PrimaryTaxIdentifier": values.to_h[:PrimaryTaxIdentifier]})
+        params = response.to_result.value!.merge!({"PrimaryTaxIdentifier": payload[:fein], "ExternalId": payload[:hbx_id] })
         create_customer_map(params)
         create_sub_customer(params)
 
