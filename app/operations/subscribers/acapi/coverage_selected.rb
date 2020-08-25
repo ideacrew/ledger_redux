@@ -15,7 +15,7 @@ module Subscribers::Acapi
     def call(event_name, e_start, e_end, msg_id, payload)
       Rails.logger.info {"*** Processing coverage_selected payload -- #{payload}"}
       # params = yield transform_xml(payload)
-      values = yield map_attributes(payload)
+      values = yield map_attributes(payload.deep_symbolize_keys!)
       attributes = yield validate(values)
       member = yield create(attributes.to_h)
 
