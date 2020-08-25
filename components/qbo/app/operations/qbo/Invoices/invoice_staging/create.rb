@@ -21,7 +21,7 @@ module Qbo::Invoices
           sub_customer_external_id: payload[:hbx_id],
           customer_external_id: payload[:employer_hbx_id],
           plan_name: payload[:plan_name],
-          coverage_type: payload[:coverage_type],
+          coverage_type: payload[:coverage_kind],
           premium_amount: payload[:premium_amount].to_f,
           benefit_begin_date: payload[:benefit_begin_date].to_date,
         }
