@@ -14,20 +14,18 @@ module Qbo::Customers
     private
 
     def serialize(payload)
-      address = payload[:organization][:office_locations][:office_location][:address]
-      contact = payload[:organization][:contacts][:contact]
 
       params = {
-        "ExternalId": payload[:organization][:id][:id],
-        "PrimaryTaxIdentifier": payload[:organization][:fein],
-        "DisplayName": "#{payload[:organization][:name]} (#{payload[:organization][:id][:id]})",
+        "ExternalId": payload[:hbx_id],
+        "PrimaryTaxIdentifier": payload[:fein],
+        "DisplayName": "#{payload[:employer_legal_name]} (#{payload[:hbx_id]})",
 
-        "BillAddr": { "Line1": "#{address[:address_line_1]} #{address[:address_line_1]}",
-                      "City": address[:location_city_name],
-                      "PostalCode": address[:postal_code],
+        "BillAddr": { "Line1": "#{payload[:address][:address_1]} #{payload[:address][:address_2]}",
+                      "City": payload[:address][:city],
+                      "PostalCode": payload[:address][:zip],
                     },
-        "PrimaryEmailAddr": {"Address": contact[:emails][:email][:email_address] },
-        "PrimaryPhone": {"FreeFormNumber": contact[:phones][:phone][:full_phone_number] },
+        "PrimaryEmailAddr": {"Address": payload[:email] },
+        "PrimaryPhone": {"FreeFormNumber": payload[:phone] },
         "Taxable": false
       }
 
