@@ -24,11 +24,11 @@ module Qbo::Customers
       optional(:"BillAddr").maybe(:hash)
 
       optional(:"PrimaryEmailAddr").hash do
-        optional(:"Address").value(Qbo::Types::StrippedString)
+        optional(:"Address").maybe(Qbo::Types::StrippedString)
       end
 
       optional(:"PrimaryPhone").hash do
-        optional(:"FreeFormNumber").value(Qbo::Types::StrippedString)
+        optional(:"FreeFormNumber").maybe(Qbo::Types::StrippedString)
       end
       
       optional(:"Active").value(:bool)

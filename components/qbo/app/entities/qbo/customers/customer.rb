@@ -21,11 +21,11 @@ module Qbo::Customers
     attribute :"BillAddr",                       Qbo::Locations::Address.optional.meta(omittable: true)
 
     attribute :"PrimaryEmailAddr", Dry::Struct.meta(omittable: true) do
-      attribute :"Address",                      Types::Strict::String.meta(omittable: true)
+      attribute :"Address",                      Types::String.optional.meta(omittable: true)
     end
 
     attribute :"PrimaryPhone", Dry::Struct.meta(omittable: true) do
-      attribute :"FreeFormNumber",               Types::Strict::String.meta(omittable: true)
+      attribute :"FreeFormNumber",               Types::String.optional.meta(omittable: true)
     end
     
     attribute :"Active",                         Types::Bool.meta(omittable: true)

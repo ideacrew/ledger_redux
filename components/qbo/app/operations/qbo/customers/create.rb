@@ -37,21 +37,21 @@ module Qbo::Customers
 
     def create_customer_map(params)
       Qbo::CustomerMap.create!(
-        quickbooks_customer_id: params["Id"],
-        fein: params["PrimaryTaxIdentifier"],
-        external_id: params["ExternalId"],
+        quickbooks_customer_id: params[:Id],
+        fein: params[:PrimaryTaxIdentifier],
+        external_id: params[:ExternalId],
         resource: "customer"
       )
     end
 
     def create_customer(params)
-      Qbo::Customer.create!(params.except!("CurrencyRef"))
+      Qbo::Customer.create!(params.except!(:CurrencyRef))
     end
 
-    def create(values)
+    def create(values, payload)
       response = Try { Qbo::QuickbooksConnect.call.create(:customer, payload: values.to_h) }
       if response.success?
-        params = response.to_result.value!.merge!({"PrimaryTaxIdentifier": values.to_h[:PrimaryTaxIdentifier], "ExternalId": payload[:hbx_id] })
+        params = response.to_result.value!.merge!({:PrimaryTaxIdentifier => values.to_h[:PrimaryTaxIdentifier], :ExternalId => payload[:hbx_id] }).deep_symbolize_keys!
         create_customer_map(params)
         create_customer(params)
 

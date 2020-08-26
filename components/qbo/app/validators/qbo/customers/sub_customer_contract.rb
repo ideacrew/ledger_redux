@@ -15,7 +15,6 @@ module Qbo::Customers
       optional(:"FamilyName").value(Qbo::Types::StrippedString)
 
       optional(:Id).value(Qbo::Types::StrippedString)
-      required(:"ParentRef").value(Qbo::Types::StrippedString)
       optional(:"SyncToken").value(Qbo::Types::StrippedString)
       optional(:"domain").value(Qbo::Types::StrippedString)
 
@@ -24,12 +23,16 @@ module Qbo::Customers
 
       optional(:"BillAddr").maybe(:hash)
 
+      required(:"ParentRef").hash do
+        required(:value).value(Qbo::Types::StrippedString)
+      end
+
       optional(:"PrimaryEmailAddr").hash do
-        optional(:"Address").value(Qbo::Types::StrippedString)
+        optional(:"Address").maybe(Qbo::Types::StrippedString)
       end
 
       optional(:"PrimaryPhone").hash do
-        optional(:"FreeFormNumber").value(Qbo::Types::StrippedString)
+        optional(:"FreeFormNumber").maybe(Qbo::Types::StrippedString)
       end
       
       optional(:"Active").value(:bool)
