@@ -35,11 +35,12 @@ module Subscribers::Acapi
 
     def map_attributes(payload)
       result = {
-        effective_date: payload[:effective_on].to_date,
+        effective_date: payload[:benefit_begin_date].to_date,
         total_premium: payload[:premium_amount].to_s,
         subscriber_id: payload[:hbx_id],
+        coverage_kind: payload[:coverage_kind],
         payload: payload
-      } 
+      }
 
       Success(result)
     end
