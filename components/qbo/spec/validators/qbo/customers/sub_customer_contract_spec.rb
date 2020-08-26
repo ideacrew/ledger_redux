@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Qbo::Customers::SubCustomerContract do
 
-  let(:required_params)    { { "DisplayName": "Bill's Windsurf Shop","ExternalId": "12345678", "ParentRef": "123" } }
+  let(:required_params)    { { "DisplayName": "Bill's Windsurf Shop", "ParentRef": {value:"123"} } }
 
   let(:customer) { 
      {
