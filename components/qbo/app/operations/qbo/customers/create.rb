@@ -45,7 +45,7 @@ module Qbo::Customers
     end
 
     def create_customer(params)
-      Qbo::Customer.create!(params.except!(:CurrencyRef))
+      Qbo::Customer.create!(params)
     end
 
     def create(values, payload)
