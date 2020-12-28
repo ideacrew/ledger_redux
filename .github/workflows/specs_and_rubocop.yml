@@ -19,6 +19,7 @@ jobs:
       - name: Create additional database
         run: |
           sudo -u postgres createdb --owner=runner ledger_redux_test
+          PGPASSWORD=testing psql --username=runner --host=localhost --list timetable
       - name: Cache Gems
         uses: actions/cache@v1
         with:
