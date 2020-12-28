@@ -18,7 +18,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
 
-  username: ledger_redux
+  username: runner
   password: testing
     # host:     <%= ENV['DB_HOST'] %>
     # port:     <%= ENV['DB_PORT'] %>
