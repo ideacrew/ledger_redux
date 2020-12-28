@@ -13,6 +13,9 @@ jobs:
         run: |
           sudo systemctl start postgresql.service
           pg_isready
+      - name: Create additional user
+        run: |
+          sudo -u postgres psql --command="CREATE USER ledger_redux PASSWORD 'testing'" --command="\du"
       - name: Cache Gems
         uses: actions/cache@v1
         with:
