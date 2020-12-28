@@ -16,6 +16,9 @@ jobs:
       - name: Create additional user
         run: |
           sudo -u postgres psql --command="CREATE USER ledger_redux PASSWORD 'testing'" --command="\du"
+      - name: Create additional database
+        run: |
+          sudo -u postgres createdb --owner=ledger_redux ledger_redux_test
       - name: Cache Gems
         uses: actions/cache@v1
         with:
