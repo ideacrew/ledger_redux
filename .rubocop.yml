@@ -4,6 +4,9 @@ AllCops:
 Bundler/OrderedGems:
   Enabled: false
 
+Gemspec/OrderedDependencies:
+  Enabled: false
+
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: false
 
