@@ -35,8 +35,8 @@ module LedgerRedux
     
     config.middleware.use Rack::Attack
     unless Rails.env.test?
-      config.acapi.add_async_subscription("Subscribers::Acapi::BenefitCoverageInitialApplicationEligible")
       config.acapi.add_async_subscription("Subscribers::Acapi::CoverageSelected")
+      config.acapi.add_amqp_worker("Subscribers::BenefitCoverageInitialApplicationEligibleSubscriber")
     end
   end
 end
