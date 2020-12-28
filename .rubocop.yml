@@ -1,4 +1,8 @@
 AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "components/qbo/spec/dummy/**/*"
+    - "components/wf/spec/dummy/**/*"
   TargetRubyVersion: 2.6
 
 Bundler/OrderedGems:
