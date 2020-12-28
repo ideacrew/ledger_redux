@@ -14,6 +14,10 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  if (ENV['TEST_ENV_NUMBER'].nil?) && (config.instance_variable_get("@files_or_directories_to_run") == ["spec"])
+    config.pattern = "spec/**/*_spec.rb,components/qbo/spec/**/*_spec.rb,components/wf/spec/**/*_spec.rb"
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
