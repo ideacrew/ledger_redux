@@ -16,6 +16,7 @@ jobs:
       - name: Create additional user
         run: |
           sudo -u postgres psql --command="CREATE USER runner PASSWORD 'testing' CREATEDB LOGIN" --command="\du"
+          sudo -u postgres psql --command="CREATE DATABASE ledger_redux_test WITH OWNER runner"
       - name: Cache Gems
         uses: actions/cache@v1
         with:
@@ -31,5 +32,4 @@ jobs:
       - name: run tests
         run: |
           cp config/database.yml.gh_actions config/database.yml
-          RAILS_ENV=test bundle exec rake db:create
           bundle exec rspec
