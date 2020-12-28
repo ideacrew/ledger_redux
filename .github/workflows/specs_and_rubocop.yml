@@ -1,0 +1,31 @@
+name: specs and rubocop
+on: push
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+      - name: Start PostgreSQL on Ubuntu
+        run: |
+          sudo systemctl start postgresql.service
+          pg_isready
+      - name: Cache Gems
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gluedb-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gluedb-gems-${{ hashFiles('**/Gemfile.lock') }}
+      - name: bundle install
+        run: |
+          sudo gem install bundler -v '2.1.4'
+          bundle config path vendor/bundle
+          bundle install
+      - name: run tests
+        run: |
+          cp config/database.yml.gh_actions config/database.yml
+          bundle exec rspec
