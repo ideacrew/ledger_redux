@@ -31,4 +31,5 @@ jobs:
       - name: run tests
         run: |
           cp config/database.yml.gh_actions config/database.yml
+          RAILS_ENV=test bundle exec rake db:create
           bundle exec rspec
